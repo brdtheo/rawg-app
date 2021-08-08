@@ -8,7 +8,7 @@ const App = () => {
       <SafeAreaView
         style={tailwind('bg-main-grey flex-1 flex justify-center items-center')}
       >
-        <Text style={tailwind('text-white font-poppins')}>Home</Text>
+        <Text style={tailwind('text-white')}>Home</Text>
         <TouchableOpacity
           style={tailwind('px-4 py-2 bg-white rounded-xl mt-6')}
         >
