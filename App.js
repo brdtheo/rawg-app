@@ -1,22 +1,23 @@
-import React from 'react'
-import { SafeAreaView, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { tailwind } from './tailwind'
+import 'react-native-gesture-handler'
+import * as React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import HomeScreen from './src/screens/HomeScreen'
 
-const App = () => {
+const Stack = createStackNavigator()
+
+const AppStack = () => {
   return (
-    <>
-      <SafeAreaView
-        style={tailwind('bg-main-grey flex-1 flex justify-center items-center')}
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
       >
-        <Text style={tailwind('text-white')}>Home</Text>
-        <TouchableOpacity
-          style={tailwind('px-4 py-2 bg-white rounded-xl mt-6')}
-        >
-          <Text style={tailwind('text-main-grey')}>Other page</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
-    </>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
-export default App
+export default AppStack
