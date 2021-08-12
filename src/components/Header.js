@@ -10,7 +10,7 @@ import {
 import { SearchContext } from '../context/SearchContext'
 import fetchData from '../api/rawg'
 
-const Header = () => {
+const Header = ({ gamesCount }) => {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_900Black,
@@ -22,9 +22,8 @@ const Header = () => {
   const getSearchResult = async () => {
     try {
       const text = searchText.split(' ').join('-')
-      const gamesList = await fetchData(`games/?search=${text}`)
-      setSearchResult(gamesList)
-      console.log(searchResult)
+      const gamesList = await fetchData(`games/rocket-league`)
+      console.log(gamesList)
     } catch (err) {
       console.log(err)
     }
@@ -42,7 +41,7 @@ const Header = () => {
           RAWG
         </Text>
         <TextInput
-          placeholder="Search xxx games"
+          placeholder={gamesCount ? `Search ${gamesCount} games` : null}
           placeholderTextColor="rgba(255,255,255,0.6)"
           keyboardType="web-search"
           keyboardAppearance="dark"
