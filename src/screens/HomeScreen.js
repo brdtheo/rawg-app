@@ -4,11 +4,11 @@ import { tailwind } from '../../tailwind'
 import BrowseSection from '../components/BrowseSection'
 import Header from '../components/Header'
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
       <View>
-        <Header />
+        <Header navigation={navigation} />
         <BrowseSection />
       </View>
     </SafeAreaView>
