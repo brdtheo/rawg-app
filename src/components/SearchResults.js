@@ -21,12 +21,14 @@ const SearchResults = () => {
   })
 
   const Item = ({ item }) => (
-    <GameCard
-      name={item.name}
-      image={item.background_image}
-      platforms={item.parent_platforms}
-      score={item.metacritic}
-    />
+    <View style={tailwind('mb-6')}>
+      <GameCard
+        name={item.name}
+        image={item.background_image}
+        platforms={item.parent_platforms}
+        score={item.metacritic}
+      />
+    </View>
   )
 
   return (
