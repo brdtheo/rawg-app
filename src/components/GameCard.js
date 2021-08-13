@@ -5,7 +5,7 @@ import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins'
 import AppLoading from 'expo-app-loading'
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons'
 
-const GameCard = ({ name, image, platforms, score }) => {
+const GameCard = ({ name, image, platforms, score, truncate }) => {
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
   })
@@ -110,7 +110,7 @@ const GameCard = ({ name, image, platforms, score }) => {
       {fontsLoaded ? (
         <TouchableOpacity
           style={{
-            ...tailwind('rounded-2xl bg-card-grey w-full mb-6'),
+            ...tailwind('rounded-2xl bg-card-grey w-full'),
             shadowColor: '#202020',
             shadowOpacity: 0.07,
             shadowOffset: {
@@ -156,8 +156,9 @@ const GameCard = ({ name, image, platforms, score }) => {
                 </View>
               ) : null}
             </View>
-            <View>
+            <View style={tailwind('w-full')}>
               <Text
+                numberOfLines={truncate ? 1 : null}
                 style={{
                   ...tailwind('text-xl text-white'),
                   fontFamily: 'Poppins_700Bold',
