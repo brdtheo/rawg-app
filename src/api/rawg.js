@@ -1,18 +1,18 @@
 import axios from 'axios'
 import RAWG_KEY from '../../key'
 
-const fetchData = async (path) => {
-  if (path) {
+const fetchData = async (path, keyChar) => {
+  if (path && keyChar) {
     try {
       const data = await axios.get(
-        `https://api.rawg.io/api/${path}&key=${RAWG_KEY}`
+        `https://api.rawg.io/api/${path}${keyChar}key=${RAWG_KEY}`
       )
       return data.data
     } catch (err) {
       console.error(err)
     }
   } else {
-    console.error('cannot trigger API request: no path provided')
+    console.error('cannot trigger API request: no path or keyChar provided')
   }
 }
 
