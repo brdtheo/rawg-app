@@ -1,27 +1,43 @@
-import React, { useContext } from 'react'
-import { SafeAreaView, ScrollView, View } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { SafeAreaView, ScrollView } from 'react-native'
 import { tailwind } from '../../tailwind'
 import BrowseSection from '../components/BrowseSection'
 import GamesCarousel from '../components/GamesCarousel'
 import Header from '../components/Header'
-import { CarouselProvider } from '../context/CarouselContext'
-import { CarouselContext } from '../context/CarouselContext'
+import fetchData from '../api/rawg'
+import axios from 'axios'
 
 const HomeScreen = ({ navigation }) => {
-  const { newReleases, bestScore } = useContext(CarouselContext)
-  
+  const [newReleases, setNewReleases] = useState([])
+  const [bestScore, setBestScore] = useState([])
+
+  const getData = async () => {
+    try {
+      const homeRequests = await axios.all([
+        fetchData('games?ordering=released', '&'),
+        fetchData('games?ordering=-metacritic', '&'),
+      ])
+
+      setNewReleases(homeRequests[0])
+      setBestScore(homeRequests[1])
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   return (
-    <CarouselProvider>
-      <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
-        <ScrollView>
-          <Header navigation={navigation} />
-          <BrowseSection />
-          <GamesCarousel title="New releases" />
-          <GamesCarousel title="Best score" />
-        </ScrollView>
-      </SafeAreaView>
-    </CarouselProvider>
+    <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
+      <ScrollView>
+        <Header navigation={navigation} />
+        <BrowseSection />
+        <GamesCarousel title="New releases" data={newReleases.results} />
+        <GamesCarousel title="Best score" data={bestScore.results} />
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
