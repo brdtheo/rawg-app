@@ -66,7 +66,7 @@ const BrowseSection = () => {
   )
 
   return (
-    <View style={tailwind('my-12 flex-col')}>
+    <View style={tailwind('mt-4 mb-12 flex-col')}>
       {fontsLoaded ? (
         <Text
           style={{
