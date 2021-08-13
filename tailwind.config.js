@@ -6,7 +6,8 @@ module.exports = {
       colors: {
         'main-grey': '#151515',
         'secondary-grey': '#3A3A3A',
-        'browse-grey': '#333231'
+        'browse-grey': '#333231',
+        'card-grey': '#202020'
       },
     },
   },
