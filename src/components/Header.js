@@ -11,7 +11,7 @@ import { SearchContext } from '../context/SearchContext'
 import fetchData from '../api/rawg'
 import { Ionicons } from '@expo/vector-icons'
 
-const Header = () => {
+const Header = ({ arrow, navigation }) => {
   useEffect(() => {
     getGamesCount()
   }, [])
@@ -21,19 +21,25 @@ const Header = () => {
     Poppins_900Black,
   })
 
-  const { searchResult, setSearchResult } = useContext(SearchContext)
-  const [searchText, setSearchText] = useState('')
+  const { result, text } = useContext(SearchContext)
+  const [searchResult, setSearchResult] = result
+  const [searchText, setSearchText] = text
   const [gamesCount, setGamesCount] = useState(0)
 
   const getSearchResult = async () => {
+    let query
+
     if (!searchText) {
-      return
+      query = fetchData('games', '?')
+    } else {
+      query = fetchData(`games?search=${searchText}`, '&')
     }
 
     try {
       const text = searchText.split(' ').join('-')
-      const gamesList = await fetchData(`games?search=${searchText}`, '&')
-      console.log(gamesList)
+      const gamesList = await query
+      await setSearchResult(gamesList)
+      navigation.navigate('Search')
     } catch (err) {
       console.log(err)
     }
@@ -55,14 +61,25 @@ const Header = () => {
     <>
       {fontsLoaded ? (
         <View style={tailwind('px-4')}>
-          <Text
-            style={{
-              ...tailwind('text-white text-2xl tracking-widest mt-6 mb-2'),
-              fontFamily: 'Poppins_900Black',
-            }}
-          >
-            RAWG
-          </Text>
+          <View style={tailwind('flex flex-row items-center mt-6 mb-2')}>
+            {arrow ? (
+              <TouchableOpacity
+                style={tailwind('mr-2')}
+                onPress={() => navigation.pop()}
+              >
+                <Ionicons name="arrow-back" size={24} color="white" />
+              </TouchableOpacity>
+            ) : null}
+            <Text
+              style={{
+                ...tailwind('text-white text-2xl tracking-widest'),
+                fontFamily: 'Poppins_900Black',
+              }}
+            >
+              RAWG
+            </Text>
+          </View>
+
           <View
             style={tailwind(
               'flex flex-row bg-secondary-grey rounded-full h-10 text-white'
