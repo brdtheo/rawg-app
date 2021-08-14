@@ -10,6 +10,8 @@ import {
 import { SearchContext } from '../context/SearchContext'
 import fetchData from '../api/rawg'
 import { Ionicons } from '@expo/vector-icons'
+import RawgSelect from './RawgSelect'
+import { useRoute } from '@react-navigation/native'
 
 const Header = ({ arrow, navigation }) => {
   useEffect(() => {
@@ -110,6 +112,17 @@ const Header = ({ arrow, navigation }) => {
               ref={searchInput}
             />
           </View>
+
+          {useRoute().name === 'Search' ? (
+            <View style={tailwind('w-full flex flex-row mt-3')}>
+              <View style={tailwind('w-2/5 mr-3')}>
+                <RawgSelect placeholder="Platforms" />
+              </View>
+              <View style={tailwind('flex-1')}>
+                <RawgSelect placeholder="Order by" />
+              </View>
+            </View>
+          ) : null}
         </View>
       ) : (
         <AppLoading />
