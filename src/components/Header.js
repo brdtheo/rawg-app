@@ -16,6 +16,7 @@ import { useRoute } from '@react-navigation/native'
 const Header = ({ arrow, navigation }) => {
   useEffect(() => {
     getGamesCount()
+    getPlatforms()
   }, [])
 
   const routeName = useRoute().name
@@ -29,6 +30,7 @@ const Header = ({ arrow, navigation }) => {
   const [searchResult, setSearchResult] = result
   const [searchText, setSearchText] = text
   const [gamesCount, setGamesCount] = useState(0)
+  const [gamesPlatforms, setGamesPlatforms] = useState(null)
 
   const getSearchResult = async () => {
     let query
@@ -54,6 +56,20 @@ const Header = ({ arrow, navigation }) => {
       const gamesList = await fetchData('games', '?')
       const count = new Intl.NumberFormat('en-EN').format(gamesList.count)
       setGamesCount(count)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const getPlatforms = async () => {
+    try {
+      const platformsData = await fetchData('platforms', '?')
+      const platforms = []
+      platformsData.results.forEach((p) => {
+        platforms.push({ label: p.name, value: p.name })
+      })
+      console.log(platforms)
+      setGamesPlatforms(platforms)
     } catch (err) {
       console.error(err)
     }
@@ -115,13 +131,23 @@ const Header = ({ arrow, navigation }) => {
             />
           </View>
 
-          {routeName === 'Search' ? (
+          {routeName === 'Search' && gamesPlatforms ? (
             <View style={tailwind('w-full flex flex-row mt-3')}>
               <View style={tailwind('w-2/5 mr-3')}>
-                <RawgSelect placeholder="Platforms" />
+                <RawgSelect placeholder="Platforms" items={gamesPlatforms} />
               </View>
               <View style={tailwind('flex-1')}>
-                <RawgSelect placeholder="Order by" />
+                <RawgSelect
+                  placeholder="Order by"
+                  items={[
+                    { label: 'Relevance', value: '-relevance' },
+                    { label: 'Date added', value: '-created' },
+                    { label: 'Name', value: 'name' },
+                    { label: 'Release date', value: '-released' },
+                    { label: 'Popularity', value: '-added' },
+                    { label: 'Average rating', value: '-rating' },
+                  ]}
+                />
               </View>
             </View>
           ) : null}
