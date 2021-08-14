@@ -5,8 +5,8 @@ import { tailwind } from '../../tailwind'
 import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins'
 import { Ionicons } from '@expo/vector-icons'
 
-const RawgSelect = ({ placeholder }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState()
+const RawgSelect = ({ placeholder, items }) => {
+  const [selectValue, setSelectValue] = useState('')
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
   })
@@ -18,7 +18,7 @@ const RawgSelect = ({ placeholder }) => {
           <Ionicons
             name="chevron-down"
             size={16}
-            color="rgba(255,255,255,0.6)"
+            color={selectValue ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)'}
           />
         )
       }}
@@ -28,11 +28,28 @@ const RawgSelect = ({ placeholder }) => {
         color: 'white',
       }}
       style={{
-        ...pickerSelectStyles,
+        inputIOS: {
+          backgroundColor: selectValue ? 'white' : '#262626',
+          fontSize: 12,
+          fontFamily: 'Poppins_400Regular',
+          padding: 12,
+          borderRadius: 14,
+          color: selectValue ? '#262626' : 'white',
+          paddingRight: 30,
+        },
+        inputAndroid: {
+          backgroundColor: selectValue ? 'white' : '#262626',
+          fontSize: 12,
+          fontFamily: 'Poppins_400Regular',
+          padding: 12,
+          borderRadius: 14,
+          color: selectValue ? '#262626' : 'white',
+          paddingRight: 30,
+        },
         placeholder: {
           fontSize: 12,
           fontFamily: 'Poppins_400Regular',
-          color: 'rgba(255,255,255,1)',
+          color: 'rgba(255,255,255,.6)',
         },
         iconContainer: {
           top: 13,
@@ -40,34 +57,11 @@ const RawgSelect = ({ placeholder }) => {
         },
       }}
       onValueChange={(value) => console.log(value)}
-      items={[
-        { label: 'Football', value: 'football' },
-        { label: 'Baseball', value: 'baseball' },
-        { label: 'Hockey', value: 'hockey' },
-      ]}
+      items={items}
+      value={selectValue}
+      onValueChange={(value, index) => setSelectValue(value)}
     />
   )
 }
-
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    backgroundColor: '#262626',
-    fontSize: 12,
-    fontFamily: 'Poppins_400Regular',
-    padding: 12,
-    borderRadius: 14,
-    color: 'white',
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
-  inputAndroid: {
-    backgroundColor: '#262626',
-    fontSize: 12,
-    fontFamily: 'Poppins_400Regular',
-    padding: 12,
-    borderRadius: 14,
-    color: 'white',
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
-})
 
 export default RawgSelect
