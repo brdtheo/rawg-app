@@ -101,9 +101,11 @@ const GameCard = ({ name, image, platforms, score, truncate }) => {
                 'w-full flex flex-row justify-between items-center mb-2'
               )}
             >
-              <View style={tailwind('flex flex-row')}>
-                {platforms.map((platform) => getIcon(platform.platform.name))}
-              </View>
+              {platforms ? (
+                <View style={tailwind('flex flex-row')}>
+                  {platforms.map((platform) => getIcon(platform.platform.name))}
+                </View>
+              ) : null}
               {score ? (
                 <View
                   style={{
