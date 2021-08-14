@@ -3,7 +3,19 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import { tailwind } from '../../tailwind'
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins'
 import AppLoading from 'expo-app-loading'
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons'
+import NintendoIcon from './icons/NintendoIcon'
+import WindowsIcon from './icons/WindowsIcon'
+import PlaystationIcon from './icons/PlaystationIcon'
+import XboxIcon from './icons/XboxIcon'
+import PhoneIcon from './icons/PhoneIcon'
+import AndroidIcon from './icons/AndroidIcon'
+import LinuxIcon from './icons/LinuxIcon'
+import AppleIcon from './icons/AppleIcon'
+import GlobeIcon from './icons/GlobeIcon'
+import AtariIcon from './icons/AtariIcon'
+import SegaIcon from './icons/SegaIcon'
+import CommodoreIcon from './icons/CommodoreIcon'
+import ThreeDOIcon from './icons/ThreeDOIcon'
 
 const GameCard = ({ name, image, platforms, score, truncate }) => {
   const [fontsLoaded] = useFonts({
@@ -13,77 +25,31 @@ const GameCard = ({ name, image, platforms, score, truncate }) => {
   const getIcon = (platform) => {
     switch (platform) {
       case 'Xbox':
-        return (
-          <Ionicons
-            style={tailwind('mr-1')}
-            name="logo-xbox"
-            size={16}
-            color="white"
-          />
-        )
+        return <XboxIcon size={14} />
       case 'PlayStation':
-        return (
-          <Ionicons
-            style={tailwind('mr-1')}
-            name="logo-playstation"
-            size={16}
-            color="white"
-          />
-        )
+        return <PlaystationIcon size={16} />
       case 'PC':
-        return (
-          <Ionicons
-            style={tailwind('mr-1')}
-            name="logo-windows"
-            size={16}
-            color="white"
-          />
-        )
+        return <WindowsIcon size={13} />
       case 'iOS':
-        return (
-          <Ionicons
-            style={tailwind('mr-1')}
-            name="phone-portrait-sharp"
-            size={16}
-            color="white"
-          />
-        )
+        return <PhoneIcon size={15} />
       case 'Android':
-        return (
-          <Ionicons
-            style={tailwind('mr-1')}
-            name="logo-android"
-            size={16}
-            color="white"
-          />
-        )
+        return <AndroidIcon size={16} />
       case 'Web':
-        return (
-          <Ionicons
-            style={tailwind('mr-1')}
-            name="globe-outline"
-            size={16}
-            color="white"
-          />
-        )
+        return <GlobeIcon size={14} />
       case 'Apple Macintosh':
-        return (
-          <Ionicons
-            style={tailwind('mr-1')}
-            name="logo-apple"
-            size={16}
-            color="white"
-          />
-        )
+        return <AppleIcon size={15} />
       case 'Linux':
-        return (
-          <FontAwesome5
-            style={tailwind('mr-1')}
-            name="linux"
-            size={16}
-            color="white"
-          />
-        )
+        return <LinuxIcon size={16} />
+      case 'Nintendo':
+        return <NintendoIcon size={16} />
+      case 'SEGA':
+        return <SegaIcon size={16} />
+      case 'Atari':
+        return <AtariIcon size={16} />
+      case 'Commodore / Amiga':
+        return <CommodoreIcon size={16} />
+      case '3DO':
+        return <ThreeDOIcon size={16} />
       default:
         return <Text style={tailwind('text-white')}>{platform}</Text>
     }
