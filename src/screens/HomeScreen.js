@@ -34,8 +34,14 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView>
         <Header navigation={navigation} />
         <BrowseSection />
-        <GamesCarousel title="New releases" data={newReleases.results} />
-        <GamesCarousel title="Best score" data={bestScore.results} />
+        <GamesCarousel
+          title="New releases"
+          data={newReleases ? newReleases.results : null}
+        />
+        <GamesCarousel
+          title="Best score"
+          data={bestScore ? bestScore.results : null}
+        />
       </ScrollView>
     </SafeAreaView>
   )
