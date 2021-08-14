@@ -41,7 +41,7 @@ const Header = ({ arrow, navigation }) => {
       await setSearchResult(gamesList)
       navigation.navigate('Search')
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
@@ -51,7 +51,7 @@ const Header = ({ arrow, navigation }) => {
       const count = new Intl.NumberFormat('en-EN').format(gamesList.count)
       setGamesCount(count)
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
