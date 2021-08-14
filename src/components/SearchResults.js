@@ -41,7 +41,8 @@ const SearchResults = () => {
               fontFamily: 'Poppins_700Bold',
             }}
           >
-            {searchResult.count} items found
+            {new Intl.NumberFormat('en-EN').format(searchResult.count)} items
+            found
           </Text>
 
           <FlatList
