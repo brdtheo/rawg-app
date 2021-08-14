@@ -66,7 +66,7 @@ const Header = ({ arrow, navigation }) => {
       const platformsData = await fetchData('platforms', '?')
       const platforms = []
       platformsData.results.forEach((p) => {
-        platforms.push({ label: p.name, value: p.name })
+        platforms.push({ label: p.name, value: p.id })
       })
       console.log(platforms)
       setGamesPlatforms(platforms)
