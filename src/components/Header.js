@@ -18,6 +18,8 @@ const Header = ({ arrow, navigation }) => {
     getGamesCount()
   }, [])
 
+  const routeName = useRoute().name
+
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_900Black,
@@ -113,7 +115,7 @@ const Header = ({ arrow, navigation }) => {
             />
           </View>
 
-          {useRoute().name === 'Search' ? (
+          {routeName === 'Search' ? (
             <View style={tailwind('w-full flex flex-row mt-3')}>
               <View style={tailwind('w-2/5 mr-3')}>
                 <RawgSelect placeholder="Platforms" />
