@@ -64,4 +64,4 @@ const BrowseButton = ({ iconProvider, icon, title, query, navigation }) => {
   )
 }
 
-export default BrowseButton
+export default React.memo(BrowseButton)
