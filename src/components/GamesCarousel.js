@@ -4,7 +4,7 @@ import { tailwind } from '../../tailwind'
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins'
 import GameCard from './GameCard'
 
-const GamesCarousel = ({ title, data }) => {
+const GamesCarousel = ({ title, data, loading }) => {
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
   })
@@ -33,14 +33,34 @@ const GamesCarousel = ({ title, data }) => {
           >
             {title}
           </Text>
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={tailwind('pl-4')}
-            horizontal={true}
-            data={data}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={Item}
-          />
+          {loading ? (
+            <View style={tailwind('w-full pl-4 flex-row')}>
+              <View style={tailwind('w-80 mr-6')}>
+                <GameCard placeholder />
+              </View>
+              <View style={tailwind('w-80 mr-6')}>
+                <GameCard placeholder />
+              </View>
+              <View style={tailwind('w-80 mr-6')}>
+                <GameCard placeholder />
+              </View>
+              <View style={tailwind('w-80 mr-6')}>
+                <GameCard placeholder />
+              </View>
+              <View style={tailwind('w-80 mr-6')}>
+                <GameCard placeholder />
+              </View>
+            </View>
+          ) : (
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={tailwind('pl-4')}
+              horizontal={true}
+              data={data}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={Item}
+            />
+          )}
         </View>
       ) : null}
     </>
