@@ -9,7 +9,6 @@ import {
 } from '@expo-google-fonts/poppins'
 import GameCard from './GameCard'
 import CategoryCard from './CategoryCard'
-import AppLoading from 'expo-app-loading'
 import { useRoute } from '@react-navigation/native'
 import { formatNumber } from '../utilities/Utils'
 import { Ionicons } from '@expo/vector-icons'
@@ -117,9 +116,7 @@ const SearchResults = () => {
             </View>
           )}
         </View>
-      ) : (
-        <AppLoading />
-      )}
+      ) : null}
     </>
   )
 }

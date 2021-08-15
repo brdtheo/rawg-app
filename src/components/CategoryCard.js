@@ -7,7 +7,6 @@ import {
   Poppins_700Bold,
   Poppins_500Medium,
 } from '@expo-google-fonts/poppins'
-import AppLoading from 'expo-app-loading'
 import UserIcon from './icons/UserIcon'
 import { formatNumber } from '../utilities/Utils'
 
@@ -118,9 +117,7 @@ const CategoryCard = ({ name, image, games, gamesCount }) => {
             </LinearGradient>
           </ImageBackground>
         </TouchableOpacity>
-      ) : (
-        <AppLoading />
-      )}
+      ) : null}
     </>
   )
 }

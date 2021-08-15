@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import { tailwind } from '../../tailwind'
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins'
-import AppLoading from 'expo-app-loading'
 import NintendoIcon from './icons/NintendoIcon'
 import WindowsIcon from './icons/WindowsIcon'
 import PlaystationIcon from './icons/PlaystationIcon'
@@ -158,9 +157,7 @@ const GameCard = ({ name, image, platforms, score, truncate, placeholder }) => {
             </View>
           </View>
         </TouchableOpacity>
-      ) : (
-        <AppLoading />
-      )}
+      ) : null}
     </>
   )
 }

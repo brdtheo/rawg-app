@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { tailwind } from '../../tailwind'
-import AppLoading from 'expo-app-loading'
 import {
   useFonts,
   Poppins_400Regular,
