@@ -144,4 +144,4 @@ const GameCard = ({ name, image, platforms, score, truncate }) => {
   )
 }
 
-export default GameCard
+export default React.memo(GameCard)
