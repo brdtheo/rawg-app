@@ -33,7 +33,7 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
       <ScrollView>
         <Header navigation={navigation} />
-        <BrowseSection />
+        <BrowseSection navigation={navigation} />
         <GamesCarousel
           title="New releases"
           data={newReleases ? newReleases.results : null}

@@ -4,7 +4,7 @@ import { tailwind } from '../../tailwind'
 import BrowseButton from './BrowseButton'
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins'
 
-const BrowseSection = () => {
+const BrowseSection = ({ navigation }) => {
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
   })
@@ -62,6 +62,7 @@ const BrowseSection = () => {
       icon={item.icon}
       title={item.title}
       iconProvider={item.iconProvider}
+      navigation={navigation}
     />
   )
 
