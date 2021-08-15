@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { TouchableOpacity, Text, View } from 'react-native'
 import { Ionicons, FontAwesome5, MaterialIcons } from '@expo/vector-icons'
 import { tailwind } from '../../tailwind'
 import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins'
+import fetchData from '../api/rawg'
+import { SearchContext } from '../context/SearchContext'
 
-const BrowseButton = ({ iconProvider, icon, title }) => {
+const BrowseButton = ({ iconProvider, icon, title, navigation }) => {
+  const { text, result } = useContext(SearchContext)
+  const [searchResult, setSearchResult] = result
+  const [searchText, setSearchText] = text
+
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
   })
@@ -22,8 +28,23 @@ const BrowseButton = ({ iconProvider, icon, title }) => {
     }
   }
 
+  const handlePress = async () => {
+    try {
+      const data = await fetchData('platforms', '?')
+      await setSearchResult(data)
+      navigation.navigate('Search', { filters: false, card: 'category' })
+
+      console.log(data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   return (
-    <TouchableOpacity style={tailwind('flex flex-col w-24 items-center mr-4')}>
+    <TouchableOpacity
+      style={tailwind('flex flex-col w-24 items-center mr-4')}
+      onPress={() => handlePress()}
+    >
       <View
         style={tailwind(
           'flex flex-col justify-center items-center bg-browse-grey w-full h-24 rounded-2xl'
