@@ -6,7 +6,7 @@ import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins'
 import fetchData from '../api/rawg'
 import { SearchContext } from '../context/SearchContext'
 
-const BrowseButton = ({ iconProvider, icon, title, navigation }) => {
+const BrowseButton = ({ iconProvider, icon, title, query, navigation }) => {
   const { text, result } = useContext(SearchContext)
   const [searchResult, setSearchResult] = result
   const [searchText, setSearchText] = text
@@ -30,7 +30,7 @@ const BrowseButton = ({ iconProvider, icon, title, navigation }) => {
 
   const handlePress = async () => {
     try {
-      const data = await fetchData('platforms', '?')
+      const data = await fetchData(query, '?')
       await setSearchResult(data)
       navigation.navigate('Search', { filters: false, card: 'category' })
 

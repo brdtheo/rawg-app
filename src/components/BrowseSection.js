@@ -14,46 +14,55 @@ const BrowseSection = ({ navigation }) => {
       iconProvider: 'Ionicons',
       icon: 'md-game-controller',
       title: 'Platforms',
+      query: 'platforms',
     },
     {
       iconProvider: 'MaterialIcons',
       icon: 'file-download',
       title: 'Stores',
+      query: 'stores',
     },
     {
       iconProvider: 'Ionicons',
       icon: 'folder',
       title: 'Collections',
+      query: 'collections',
     },
     {
       iconProvider: 'Ionicons',
       icon: 'chatbox',
       title: 'Reviews',
+      query: 'reviews',
     },
     {
       iconProvider: 'FontAwesome5',
       icon: 'ghost',
       title: 'Genres',
+      query: 'genres',
     },
     {
       iconProvider: 'Ionicons',
       icon: 'person',
       title: 'Creators',
+      query: 'creators',
     },
     {
       iconProvider: 'FontAwesome5',
       icon: 'hashtag',
       title: 'Tags',
+      query: 'tags',
     },
     {
       iconProvider: 'Ionicons',
       icon: 'code-slash-outline',
       title: 'Developers',
+      query: 'developers',
     },
     {
       iconProvider: 'Ionicons',
       icon: 'list',
       title: 'Publishers',
+      query: 'publishers',
     },
   ]
 
@@ -63,6 +72,7 @@ const BrowseSection = ({ navigation }) => {
       title={item.title}
       iconProvider={item.iconProvider}
       navigation={navigation}
+      query={item.query}
     />
   )
 
