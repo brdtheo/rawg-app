@@ -19,7 +19,8 @@ const Header = ({ arrow, navigation }) => {
     getPlatforms()
   }, [])
 
-  const routeName = useRoute().name
+  const route = useRoute()
+  const routeName = route.name
 
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -45,7 +46,7 @@ const Header = ({ arrow, navigation }) => {
       const text = searchText.split(' ').join('-')
       const gamesList = await query
       await setSearchResult(gamesList)
-      navigation.navigate('Search')
+      navigation.navigate('Search', { filters: true, card: 'game' })
     } catch (err) {
       console.error(err)
     }
@@ -131,7 +132,10 @@ const Header = ({ arrow, navigation }) => {
             />
           </View>
 
-          {routeName === 'Search' && gamesPlatforms ? (
+          {routeName === 'Search' &&
+          gamesPlatforms &&
+          route.params &&
+          route.params.filters ? (
             <View style={tailwind('w-full flex flex-row mt-3')}>
               <View style={tailwind('w-2/5 mr-3')}>
                 <RawgSelect placeholder="Platforms" items={gamesPlatforms} />
