@@ -56,7 +56,6 @@ const RawgSelect = ({ placeholder, items }) => {
           right: 12,
         },
       }}
-      onValueChange={(value) => console.log(value)}
       items={items}
       value={selectValue}
       onValueChange={(value, index) => setSelectValue(value)}

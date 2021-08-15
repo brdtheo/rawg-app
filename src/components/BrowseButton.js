@@ -33,8 +33,6 @@ const BrowseButton = ({ iconProvider, icon, title, query, navigation }) => {
       const data = await fetchData(query, '?')
       await setSearchResult(data)
       navigation.navigate('Search', { filters: false, card: 'category' })
-
-      console.log(data)
     } catch (err) {
       console.error(err)
     }
