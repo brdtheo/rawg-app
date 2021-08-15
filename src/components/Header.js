@@ -68,7 +68,7 @@ const Header = ({ arrow, navigation }) => {
       platformsData.results.forEach((p) => {
         platforms.push({ label: p.name, value: p.id })
       })
-      console.log(platforms)
+
       setGamesPlatforms(platforms)
     } catch (err) {
       console.error(err)
