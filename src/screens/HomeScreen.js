@@ -8,8 +8,8 @@ import fetchData from '../api/rawg'
 import axios from 'axios'
 
 const HomeScreen = ({ navigation }) => {
-  const [newReleases, setNewReleases] = useState([])
-  const [bestScore, setBestScore] = useState([])
+  const [newReleases, setNewReleases] = useState(null)
+  const [bestScore, setBestScore] = useState(null)
 
   const getData = async () => {
     try {
@@ -37,10 +37,12 @@ const HomeScreen = ({ navigation }) => {
         <GamesCarousel
           title="New releases"
           data={newReleases ? newReleases.results : null}
+          loading={newReleases ? false : true}
         />
         <GamesCarousel
           title="Best score"
           data={bestScore ? bestScore.results : null}
+          loading={bestScore ? false : true}
         />
       </ScrollView>
     </SafeAreaView>
