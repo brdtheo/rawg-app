@@ -12,6 +12,7 @@ import fetchData from '../api/rawg'
 import { Ionicons } from '@expo/vector-icons'
 import RawgSelect from './RawgSelect'
 import { useRoute } from '@react-navigation/native'
+import { formatNumber } from '../utilities/Utils'
 
 const Header = ({ arrow, navigation }) => {
   useEffect(() => {
@@ -55,7 +56,7 @@ const Header = ({ arrow, navigation }) => {
   const getGamesCount = async () => {
     try {
       const gamesList = await fetchData('games', '?')
-      const count = new Intl.NumberFormat('en-EN').format(gamesList.count)
+      const count = formatNumber(gamesList.count)
       setGamesCount(count)
     } catch (err) {
       console.error(err)

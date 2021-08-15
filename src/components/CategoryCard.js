@@ -9,6 +9,7 @@ import {
 } from '@expo-google-fonts/poppins'
 import AppLoading from 'expo-app-loading'
 import UserIcon from './icons/UserIcon'
+import { formatNumber } from '../utilities/Utils'
 
 const CategoryCard = ({ name, image, games, gamesCount }) => {
   const [fontsLoaded] = useFonts({
@@ -70,7 +71,7 @@ const CategoryCard = ({ name, image, games, gamesCount }) => {
                       color: 'rgba(255,255,255,.4)',
                     }}
                   >
-                    {new Intl.NumberFormat('en-EN').format(gamesCount)}
+                    {formatNumber(gamesCount)}
                   </Text>
                 </View>
 
@@ -103,7 +104,7 @@ const CategoryCard = ({ name, image, games, gamesCount }) => {
                           fontFamily: 'Poppins_500Medium',
                         }}
                       >
-                        {new Intl.NumberFormat('en-EN').format(game.added)}
+                        {formatNumber(game.added)}
                       </Text>
                       <UserIcon size={14} />
                     </View>

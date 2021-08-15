@@ -11,6 +11,7 @@ import GameCard from './GameCard'
 import CategoryCard from './CategoryCard'
 import AppLoading from 'expo-app-loading'
 import { useRoute } from '@react-navigation/native'
+import { formatNumber } from '../utilities/Utils'
 
 const SearchResults = () => {
   const { text, result } = useContext(SearchContext)
@@ -56,8 +57,7 @@ const SearchResults = () => {
               fontFamily: 'Poppins_700Bold',
             }}
           >
-            {new Intl.NumberFormat('en-EN').format(searchResult.count)} items
-            found
+            {formatNumber(searchResult.count)} items found
           </Text>
 
           <FlatList
