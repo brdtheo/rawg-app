@@ -10,7 +10,7 @@ import {
 import UserIcon from './icons/UserIcon'
 import { formatNumber } from '../utilities/Utils'
 
-const CategoryCard = ({ name, image, games, gamesCount }) => {
+const CategoryCard = ({ name, image, games, gamesCount, placeholder }) => {
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
     Poppins_500Medium,
@@ -42,78 +42,137 @@ const CategoryCard = ({ name, image, games, gamesCount }) => {
               colors={['rgba(32,32,32,0.5)', '#202020']}
               style={tailwind('w-full h-full')}
             >
-              <View style={tailwind('flex-1 justify-center items-center px-6')}>
-                <Text
-                  style={{
-                    ...tailwind('text-white underline text-xl text-center'),
-                    fontFamily: 'Poppins_700Bold',
-                  }}
-                >
-                  {name}
-                </Text>
-              </View>
-              <View style={tailwind('py-4 px-6')}>
+              {placeholder ? (
                 <View
-                  style={tailwind('w-full flex-row items-end justify-between')}
+                  style={tailwind('flex-1 justify-center items-center px-6')}
+                >
+                  <View
+                    style={tailwind('w-28 rounded h-8 rounded bg-gray-200')}
+                  />
+                </View>
+              ) : (
+                <View
+                  style={tailwind('flex-1 justify-center items-center px-6')}
                 >
                   <Text
                     style={{
-                      ...tailwind('text-white text-base'),
+                      ...tailwind('text-white underline text-xl text-center'),
                       fontFamily: 'Poppins_700Bold',
                     }}
                   >
-                    Popular items
-                  </Text>
-                  <Text
-                    style={{
-                      ...tailwind('text-sm'),
-                      color: 'rgba(255,255,255,.4)',
-                    }}
-                  >
-                    {formatNumber(gamesCount)}
+                    {name}
                   </Text>
                 </View>
+              )}
+              {placeholder ? (
+                <View style={tailwind('py-4 px-6')}>
+                  <View
+                    style={tailwind(
+                      'w-full flex-row items-end justify-between'
+                    )}
+                  >
+                    <View style={tailwind('w-24 rounded h-6 bg-gray-200')} />
+                    <View style={tailwind('w-16 rounded h-6 bg-gray-200')} />
+                  </View>
+                  <View
+                    style={{
+                      ...tailwind('w-full border-b mt-2 mb-4'),
+                      borderColor: 'rgba(255,255,255,.2)',
+                    }}
+                  />
+                  <View
+                    style={tailwind(
+                      'w-full flex-row items-center justify-between mb-3'
+                    )}
+                  >
+                    <View style={tailwind('w-32 rounded h-5 bg-gray-200')} />
+                    <View style={tailwind('w-20 rounded h-5 bg-gray-200')} />
+                  </View>
+                  <View
+                    style={tailwind(
+                      'w-full flex-row items-center justify-between mb-3'
+                    )}
+                  >
+                    <View style={tailwind('w-32 rounded h-5 bg-gray-200')} />
+                    <View style={tailwind('w-20 rounded h-5 bg-gray-200')} />
+                  </View>
+                  <View
+                    style={tailwind(
+                      'w-full flex-row items-center justify-between mb-3'
+                    )}
+                  >
+                    <View style={tailwind('w-32 rounded h-5 bg-gray-200')} />
+                    <View style={tailwind('w-20 rounded h-5 bg-gray-200')} />
+                  </View>
+                </View>
+              ) : (
+                <View style={tailwind('py-4 px-6')}>
+                  <View
+                    style={tailwind(
+                      'w-full flex-row items-end justify-between'
+                    )}
+                  >
+                    <Text
+                      style={{
+                        ...tailwind('text-white text-base'),
+                        fontFamily: 'Poppins_700Bold',
+                      }}
+                    >
+                      Popular items
+                    </Text>
+                    <Text
+                      style={{
+                        ...tailwind('text-sm'),
+                        color: 'rgba(255,255,255,.4)',
+                      }}
+                    >
+                      {formatNumber(gamesCount)}
+                    </Text>
+                  </View>
 
-                <View
-                  style={{
-                    ...tailwind('w-full border-b mt-2 mb-4'),
-                    borderColor: 'rgba(255,255,255,.2)',
-                  }}
-                />
+                  <View
+                    style={{
+                      ...tailwind('w-full border-b mt-2 mb-4'),
+                      borderColor: 'rgba(255,255,255,.2)',
+                    }}
+                  />
 
-                {games
-                  ? games.slice(0, 3).map((game) => (
-                      <View
-                        style={tailwind(
-                          'w-full flex-row items-center justify-between mb-3'
-                        )}
-                      >
-                        <Text
-                          numberOfLines={1}
+                  {games
+                    ? games.slice(0, 3).map((game) => (
+                        <View
                           style={tailwind(
-                            'underline text-white text-sm flex-1 mr-6'
+                            'w-full flex-row items-center justify-between mb-3'
                           )}
                         >
-                          {game.name}
-                        </Text>
-                        <View
-                          style={tailwind('justify-end items-center flex-row')}
-                        >
                           <Text
-                            style={{
-                              ...tailwind('text-sm mr-1'),
-                              color: 'rgba(255,255,255,.4)',
-                              fontFamily: 'Poppins_500Medium',
-                            }}
+                            numberOfLines={1}
+                            style={tailwind(
+                              'underline text-white text-sm flex-1 mr-6'
+                            )}
                           >
-                            {formatNumber(game.added)}
+                            {game.name}
                           </Text>
-                          <UserIcon size={14} />
+                          <View
+                            style={tailwind(
+                              'justify-end items-center flex-row'
+                            )}
+                          >
+                            <Text
+                              style={{
+                                ...tailwind('text-sm mr-1'),
+                                color: 'rgba(255,255,255,.4)',
+                                fontFamily: 'Poppins_500Medium',
+                              }}
+                            >
+                              {formatNumber(game.added)}
+                            </Text>
+                            <UserIcon size={14} />
+                          </View>
                         </View>
-                      </View>
-                    ))
-                  : null}
-              </View>
+                      ))
+                    : null}
+                </View>
+              )}
             </LinearGradient>
           </ImageBackground>
         </TouchableOpacity>
