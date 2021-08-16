@@ -5,6 +5,15 @@ import { tailwind } from '../../tailwind'
 import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins'
 import fetchData from '../api/rawg'
 import { SearchContext } from '../context/SearchContext'
+import ControllerIcon from './icons/ControllerIcon'
+import StoreIcon from './icons/StoreIcon'
+import CollectionIcon from './icons/CollectionIcon'
+import ReviewIcon from './icons/ReviewIcon'
+import GenreIcon from './icons/GenreIcon'
+import CreatorIcon from './icons/CreatorIcon'
+import TagIcon from './icons/TagIcon'
+import DeveloperIcon from './icons/DeveloperIcon'
+import PublisherIcon from './icons/PublisherIcon'
 
 const BrowseButton = ({ iconProvider, icon, title, query, navigation }) => {
   const { text, result } = useContext(SearchContext)
@@ -16,15 +25,27 @@ const BrowseButton = ({ iconProvider, icon, title, query, navigation }) => {
   })
 
   const renderIcon = () => {
-    switch (iconProvider) {
-      case 'Ionicons':
-        return <Ionicons name={icon} size={32} color="white" />
-      case 'FontAwesome5':
-        return <FontAwesome5 name={icon} size={32} color="white" />
-      case 'MaterialIcons':
-        return <MaterialIcons name={icon} size={32} color="white" />
+    switch (icon) {
+      case 'controller':
+        return <ControllerIcon size={32} />
+      case 'store':
+        return <StoreIcon size={28} />
+      case 'collection':
+        return <CollectionIcon size={28} />
+      case 'review':
+        return <ReviewIcon size={28} />
+      case 'genre':
+        return <GenreIcon size={28} />
+      case 'creator':
+        return <CreatorIcon size={28} />
+      case 'tag':
+        return <TagIcon size={28} />
+      case 'developer':
+        return <DeveloperIcon size={28} />
+      case 'publisher':
+        return <PublisherIcon size={28} />
       default:
-        return <Text style={tailwind('text-white')}>{iconProvider}</Text>
+        return <Text style={tailwind('text-white')}>{icon}</Text>
     }
   }
 
