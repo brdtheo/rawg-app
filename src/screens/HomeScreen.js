@@ -6,6 +6,7 @@ import GamesCarousel from '../components/GamesCarousel'
 import Header from '../components/Header'
 import fetchData from '../api/rawg'
 import axios from 'axios'
+import AppLoading from 'expo-app-loading'
 
 const HomeScreen = ({ navigation }) => {
   const [newReleases, setNewReleases] = useState(null)
@@ -30,22 +31,28 @@ const HomeScreen = ({ navigation }) => {
   }, [])
 
   return (
-    <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
-      <ScrollView>
-        <Header navigation={navigation} />
-        <BrowseSection navigation={navigation} />
-        <GamesCarousel
-          title="New releases"
-          data={newReleases ? newReleases.results : null}
-          loading={newReleases ? false : true}
-        />
-        <GamesCarousel
-          title="Best score"
-          data={bestScore ? bestScore.results : null}
-          loading={bestScore ? false : true}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <>
+      {newReleases && bestScore ? (
+        <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
+          <ScrollView>
+            <Header navigation={navigation} />
+            <BrowseSection navigation={navigation} />
+            <GamesCarousel
+              title="New releases"
+              data={newReleases ? newReleases.results : null}
+              loading={newReleases ? false : true}
+            />
+            <GamesCarousel
+              title="Best score"
+              data={bestScore ? bestScore.results : null}
+              loading={bestScore ? false : true}
+            />
+          </ScrollView>
+        </SafeAreaView>
+      ) : (
+        <AppLoading />
+      )}
+    </>
   )
 }
 
