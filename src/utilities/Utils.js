@@ -51,3 +51,19 @@ export const getIcon = (platform) => {
       return <Text style={tailwind('text-white')}>{platform}</Text>
   }
 }
+
+export const getScoreColor = (score) => {
+  const parsedScore = parseInt(score)
+
+  if (!score) {
+    console.error('cannot return score color: no score provided')
+  }
+
+  if (parsedScore > 50 && parsedScore < 75) {
+    return '#FDCA52'
+  } else if (parsedScore >= 75) {
+    return '#44BD49'
+  } else {
+    return '#fff'
+  }
+}
