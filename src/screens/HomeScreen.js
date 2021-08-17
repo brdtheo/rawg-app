@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, ScrollView } from 'react-native'
+import { SafeAreaView, ScrollView, View } from 'react-native'
 import { tailwind } from '../../tailwind'
 import BrowseSection from '../components/BrowseSection'
 import GamesCarousel from '../components/GamesCarousel'
@@ -8,7 +8,7 @@ import fetchData from '../api/rawg'
 import axios from 'axios'
 import AppLoading from 'expo-app-loading'
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
   const [newReleases, setNewReleases] = useState(null)
   const [bestScore, setBestScore] = useState(null)
 
@@ -34,20 +34,22 @@ const HomeScreen = ({ navigation }) => {
     <>
       {newReleases && bestScore ? (
         <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
-          <ScrollView>
-            <Header />
-            <BrowseSection />
-            <GamesCarousel
-              title="New releases"
-              data={newReleases ? newReleases.results : null}
-              loading={newReleases ? false : true}
-            />
-            <GamesCarousel
-              title="Best score"
-              data={bestScore ? bestScore.results : null}
-              loading={bestScore ? false : true}
-            />
-          </ScrollView>
+          <View style={tailwind('bg-main-grey flex-1')}>
+            <ScrollView>
+              <Header />
+              <BrowseSection />
+              <GamesCarousel
+                title="New releases"
+                data={newReleases ? newReleases.results : null}
+                loading={newReleases ? false : true}
+              />
+              <GamesCarousel
+                title="Best score"
+                data={bestScore ? bestScore.results : null}
+                loading={bestScore ? false : true}
+              />
+            </ScrollView>
+          </View>
         </SafeAreaView>
       ) : (
         <AppLoading />
