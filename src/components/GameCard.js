@@ -2,59 +2,22 @@ import React from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import { tailwind } from '../../tailwind'
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins'
-import NintendoIcon from './icons/NintendoIcon'
-import WindowsIcon from './icons/WindowsIcon'
-import PlaystationIcon from './icons/PlaystationIcon'
-import XboxIcon from './icons/XboxIcon'
-import PhoneIcon from './icons/PhoneIcon'
-import AndroidIcon from './icons/AndroidIcon'
-import LinuxIcon from './icons/LinuxIcon'
-import AppleIcon from './icons/AppleIcon'
-import GlobeIcon from './icons/GlobeIcon'
-import AtariIcon from './icons/AtariIcon'
-import SegaIcon from './icons/SegaIcon'
-import CommodoreIcon from './icons/CommodoreIcon'
-import ThreeDOIcon from './icons/ThreeDOIcon'
 import { useNavigation } from '@react-navigation/native'
+import { getIcon } from '../utilities/Utils'
 
-const GameCard = ({ name, image, platforms, score, truncate, placeholder }) => {
+const GameCard = ({
+  name,
+  image,
+  platforms,
+  score,
+  truncate,
+  placeholder,
+  slug,
+}) => {
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
   })
   const navigation = useNavigation()
-
-  const getIcon = (platform) => {
-    switch (platform) {
-      case 'Xbox':
-        return <XboxIcon size={14} />
-      case 'PlayStation':
-        return <PlaystationIcon size={16} />
-      case 'PC':
-        return <WindowsIcon size={13} />
-      case 'iOS':
-        return <PhoneIcon size={15} />
-      case 'Android':
-        return <AndroidIcon size={16} />
-      case 'Web':
-        return <GlobeIcon size={14} />
-      case 'Apple Macintosh':
-        return <AppleIcon size={15} />
-      case 'Linux':
-        return <LinuxIcon size={16} />
-      case 'Nintendo':
-        return <NintendoIcon size={16} />
-      case 'SEGA':
-        return <SegaIcon size={16} />
-      case 'Atari':
-        return <AtariIcon size={16} />
-      case 'Commodore / Amiga':
-        return <CommodoreIcon size={16} />
-      case '3DO':
-        return <ThreeDOIcon size={16} />
-      default:
-        return <Text style={tailwind('text-white')}>{platform}</Text>
-    }
-  }
 
   const getScoreColor = (score) => {
     const parsedScore = parseInt(score)
@@ -88,7 +51,7 @@ const GameCard = ({ name, image, platforms, score, truncate, placeholder }) => {
             elevation: 2,
             overflow: 'hidden',
           }}
-          onPress={() => navigation.navigate('Detail')}
+          onPress={() => navigation.navigate('Detail', { slug: slug })}
         >
           {image ? (
             <Image
