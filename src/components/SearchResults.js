@@ -33,6 +33,7 @@ const SearchResults = () => {
         image={item.background_image}
         platforms={item.parent_platforms}
         score={item.metacritic}
+        slug={item.slug}
       />
     </View>
   )
