@@ -7,7 +7,8 @@ module.exports = {
         'main-grey': '#151515',
         'secondary-grey': '#3A3A3A',
         'browse-grey': '#333231',
-        'card-grey': '#202020'
+        'card-grey': '#202020',
+        'store-grey': '#2D2D2D'
       },
     },
   },
