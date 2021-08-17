@@ -7,7 +7,7 @@ import SearchResults from '../components/SearchResults'
 const SearchScreen = () => {
   return (
     <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
-      <View style={tailwind('flex-1')}>
+      <View style={tailwind('bg-main-grey flex-1')}>
         <Header arrow />
         <SearchResults />
       </View>
