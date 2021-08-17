@@ -62,7 +62,6 @@ const BrowseSection = ({ navigation }) => {
       icon={item.icon}
       title={item.title}
       iconProvider={item.iconProvider}
-      navigation={navigation}
       query={item.query}
     />
   )

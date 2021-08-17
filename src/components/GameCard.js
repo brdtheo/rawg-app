@@ -15,11 +15,13 @@ import AtariIcon from './icons/AtariIcon'
 import SegaIcon from './icons/SegaIcon'
 import CommodoreIcon from './icons/CommodoreIcon'
 import ThreeDOIcon from './icons/ThreeDOIcon'
+import { useNavigation } from '@react-navigation/native'
 
 const GameCard = ({ name, image, platforms, score, truncate, placeholder }) => {
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
   })
+  const navigation = useNavigation()
 
   const getIcon = (platform) => {
     switch (platform) {
@@ -86,6 +88,7 @@ const GameCard = ({ name, image, platforms, score, truncate, placeholder }) => {
             elevation: 2,
             overflow: 'hidden',
           }}
+          onPress={() => navigation.navigate('Detail')}
         >
           {image ? (
             <Image

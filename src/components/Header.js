@@ -12,8 +12,9 @@ import { Ionicons } from '@expo/vector-icons'
 import RawgSelect from './RawgSelect'
 import { useRoute } from '@react-navigation/native'
 import { formatNumber } from '../utilities/Utils'
+import { useNavigation } from '@react-navigation/native';
 
-const Header = ({ arrow, navigation }) => {
+const Header = ({ arrow }) => {
   useEffect(() => {
     getGamesCount()
     getPlatforms()
@@ -21,6 +22,8 @@ const Header = ({ arrow, navigation }) => {
 
   const route = useRoute()
   const routeName = route.name
+  const navigation = useNavigation();
+
 
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,

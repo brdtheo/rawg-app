@@ -35,8 +35,8 @@ const HomeScreen = ({ navigation }) => {
       {newReleases && bestScore ? (
         <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
           <ScrollView>
-            <Header navigation={navigation} />
-            <BrowseSection navigation={navigation} />
+            <Header />
+            <BrowseSection />
             <GamesCarousel
               title="New releases"
               data={newReleases ? newReleases.results : null}

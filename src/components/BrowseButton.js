@@ -14,11 +14,13 @@ import CreatorIcon from './icons/CreatorIcon'
 import TagIcon from './icons/TagIcon'
 import DeveloperIcon from './icons/DeveloperIcon'
 import PublisherIcon from './icons/PublisherIcon'
+import { useNavigation } from '@react-navigation/native';
 
-const BrowseButton = ({ iconProvider, icon, title, query, navigation }) => {
+const BrowseButton = ({ iconProvider, icon, title, query }) => {
   const { text, result } = useContext(SearchContext)
   const [searchResult, setSearchResult] = result
   const [searchText, setSearchText] = text
+  const navigation = useNavigation();
 
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
