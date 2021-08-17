@@ -12,7 +12,7 @@ import { Ionicons } from '@expo/vector-icons'
 import RawgSelect from './RawgSelect'
 import { useRoute } from '@react-navigation/native'
 import { formatNumber } from '../utilities/Utils'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'
 
 const Header = ({ arrow }) => {
   useEffect(() => {
@@ -22,8 +22,7 @@ const Header = ({ arrow }) => {
 
   const route = useRoute()
   const routeName = route.name
-  const navigation = useNavigation();
-
+  const navigation = useNavigation()
 
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -85,6 +84,9 @@ const Header = ({ arrow }) => {
       setTimeout(() => {
         setSearchResult(null)
       }, 200)
+    }
+
+    if (routeName === 'Search' || routeName === 'Detail') {
       setExpandHeader(true)
     }
 
