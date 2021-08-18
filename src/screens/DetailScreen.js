@@ -99,17 +99,19 @@ const GameDetail = () => {
         {gameData && gameScreenshots && gameStores && fontsLoaded ? (
           <ScrollView style={tailwind('mt-4 flex-1')}>
             <View style={tailwind('mx-4 flex-row w-full items-center')}>
-              <View style={tailwind('bg-white rounded px-2 py-1')}>
-                <Text
-                  style={{
-                    ...tailwind('text-main-grey tracking-widest text-xs'),
-                    fontFamily: 'Poppins_400Regular',
-                  }}
-                >
-                  {moment(gameData.released).format('MMM D, YYYY')}
-                </Text>
-              </View>
-              <View style={tailwind('flex-row ml-2')}>
+              {gameData.released ? (
+                <View style={tailwind('bg-white rounded px-2 py-1 mr-2')}>
+                  <Text
+                    style={{
+                      ...tailwind('text-main-grey tracking-widest text-xs'),
+                      fontFamily: 'Poppins_400Regular',
+                    }}
+                  >
+                    {moment(gameData.released).format('MMM D, YYYY')}
+                  </Text>
+                </View>
+              ) : null}
+              <View style={tailwind('flex-row')}>
                 {gameData.parent_platforms.map((platform) =>
                   getIcon(platform.platform.name)
                 )}
