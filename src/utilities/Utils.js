@@ -21,9 +21,14 @@ import PlaystoreIcon from '../components/icons/PlaystoreIcon'
 import ItchIcon from '../components/icons/ItchIcon'
 import { tailwind } from '../../tailwind'
 import fetchData from '../api/rawg'
+import moment from 'moment'
 
 export const formatNumber = (number) => {
   return new Intl.NumberFormat('en-EN').format(number)
+}
+
+export const formatDate = (date) =>{
+  return moment(date).format('MMM D, YYYY')
 }
 
 export const getIcon = (platform) => {
