@@ -5,8 +5,6 @@ import {
   SafeAreaView,
   ActivityIndicator,
   ScrollView,
-  Image,
-  FlatList,
   TouchableOpacity,
 } from 'react-native'
 import { tailwind } from '../../tailwind'
@@ -14,7 +12,7 @@ import fetchData from '../api/rawg'
 import Header from '../components/Header'
 import { SearchContext } from '../context/SearchContext'
 import { useRoute } from '@react-navigation/native'
-import { getScoreColor, getStoreIcon } from '../utilities/Utils'
+import { getScoreColor } from '../utilities/Utils'
 import {
   useFonts,
   Poppins_400Regular,
@@ -26,6 +24,7 @@ import axios from 'axios'
 import { Linking } from 'react-native'
 import GameDetailHeader from '../components/game-detail/GameDetailHeader'
 import GameDetailScreenshots from '../components/game-detail/GameDetailScreenshots'
+import GameDetailStores from '../components/game-detail/GameDetailStores'
 
 const GameDetail = () => {
   const [gameData, setGameData] = useState(null)
@@ -62,40 +61,11 @@ const GameDetail = () => {
     }
   }
 
-  const findStoreURL = (storeId) => {
-    return gameStores.results.find((s) => s.store_id == storeId).url
-  }
-
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_700Bold,
   })
-
-  const StoreLink = ({ item, index }) => (
-    <TouchableOpacity
-      style={{
-        ...tailwind(
-          'bg-store-grey py-3 rounded-lg flex-row justify-center items-center'
-        ),
-        width: '49%',
-        marginBottom: index === gameData.stores.length - 1 ? 0 : 8,
-      }}
-      onPress={() => Linking.openURL(findStoreURL(item.store.id))}
-    >
-      <Text
-        style={{
-          ...tailwind('text-white text-opacity-40 text-xs'),
-          fontFamily: 'Poppins_400Regular',
-        }}
-      >
-        {item.store.name}
-      </Text>
-      <View style={tailwind('opacity-40 w-5 ml-1 justify-center')}>
-        {getStoreIcon(item.store.slug)}
-      </View>
-    </TouchableOpacity>
-  )
 
   return (
     <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
@@ -114,24 +84,7 @@ const GameDetail = () => {
             ) : null}
 
             {gameData.stores.length ? (
-              <View style={tailwind('mx-4 mb-6')}>
-                <Text
-                  style={{
-                    ...tailwind('text-lg text-white text-opacity-40 mb-1.5'),
-                    fontFamily: 'Poppins_400Regular',
-                  }}
-                >
-                  Where to buy
-                </Text>
-                <View style={tailwind('flex-row flex-wrap')}>
-                  <FlatList
-                    columnWrapperStyle={tailwind('justify-between')}
-                    data={gameData.stores}
-                    numColumns={2}
-                    renderItem={StoreLink}
-                  />
-                </View>
-              </View>
+              <GameDetailStores gameData={gameData} gameStores={gameStores} />
             ) : null}
 
             <View style={tailwind('mx-4 mb-6')}>
