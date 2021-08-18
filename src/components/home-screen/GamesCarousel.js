@@ -1,9 +1,9 @@
 import React from 'react'
 import { FlatList, View, Text } from 'react-native'
-import { tailwind } from '../../tailwind'
+import { tailwind } from '../../../tailwind'
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins'
-import GameCard from './GameCard'
-import { fetchNextData } from '../utilities/Utils'
+import GameCard from '../GameCard'
+import { fetchNextData } from '../../utilities/Utils'
 
 const GamesCarousel = ({ title, data, loading, context }) => {
   const [fontsLoaded] = useFonts({

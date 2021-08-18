@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text, FlatList } from 'react-native'
-import { tailwind } from '../../tailwind'
+import { tailwind } from '../../../tailwind'
 import BrowseButton from './BrowseButton'
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins'
 
-const BrowseSection = ({ navigation }) => {
+const BrowseSection = () => {
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
   })

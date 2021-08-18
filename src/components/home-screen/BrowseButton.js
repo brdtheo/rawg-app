@@ -1,26 +1,25 @@
 import React, { useContext } from 'react'
 import { TouchableOpacity, Text, View } from 'react-native'
-import { Ionicons, FontAwesome5, MaterialIcons } from '@expo/vector-icons'
-import { tailwind } from '../../tailwind'
+import { tailwind } from '../../../tailwind'
 import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins'
-import fetchData from '../api/rawg'
-import { SearchContext } from '../context/SearchContext'
-import ControllerIcon from './icons/ControllerIcon'
-import StoreIcon from './icons/StoreIcon'
-import CollectionIcon from './icons/CollectionIcon'
-import ReviewIcon from './icons/ReviewIcon'
-import GenreIcon from './icons/GenreIcon'
-import CreatorIcon from './icons/CreatorIcon'
-import TagIcon from './icons/TagIcon'
-import DeveloperIcon from './icons/DeveloperIcon'
-import PublisherIcon from './icons/PublisherIcon'
-import { useNavigation } from '@react-navigation/native';
+import fetchData from '../../api/rawg'
+import { SearchContext } from '../../context/SearchContext'
+import ControllerIcon from '../icons/ControllerIcon'
+import StoreIcon from '../icons/StoreIcon'
+import CollectionIcon from '../icons/CollectionIcon'
+import ReviewIcon from '../icons/ReviewIcon'
+import GenreIcon from '../icons/GenreIcon'
+import CreatorIcon from '../icons/CreatorIcon'
+import TagIcon from '../icons/TagIcon'
+import DeveloperIcon from '../icons/DeveloperIcon'
+import PublisherIcon from '../icons/PublisherIcon'
+import { useNavigation } from '@react-navigation/native'
 
 const BrowseButton = ({ iconProvider, icon, title, query }) => {
   const { text, result } = useContext(SearchContext)
   const [searchResult, setSearchResult] = result
   const [searchText, setSearchText] = text
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
