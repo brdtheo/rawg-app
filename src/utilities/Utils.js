@@ -13,6 +13,12 @@ import AtariIcon from '../components/icons/AtariIcon'
 import SegaIcon from '../components/icons/SegaIcon'
 import CommodoreIcon from '../components/icons/CommodoreIcon'
 import ThreeDOIcon from '../components/icons/ThreeDOIcon'
+import EpicGamesIcon from '../components/icons/EpicGamesIcon'
+import SteamIcon from '../components/icons/SteamIcon'
+import AppstoreIcon from '../components/icons/AppstoreIcon'
+import GogIcon from '../components/icons/GogIcon'
+import PlaystoreIcon from '../components/icons/PlaystoreIcon'
+import ItchIcon from '../components/icons/ItchIcon'
 import { tailwind } from '../../tailwind'
 
 export const formatNumber = (number) => {
@@ -49,6 +55,33 @@ export const getIcon = (platform) => {
       return <ThreeDOIcon size={16} />
     default:
       return <Text style={tailwind('text-white')}>{platform}</Text>
+  }
+}
+
+export const getStoreIcon = (store) => {
+  switch (store) {
+    case 'xbox360':
+      return <XboxIcon size={14} />
+    case 'gog':
+      return <GogIcon size={17} />
+    case 'xbox-store':
+      return <XboxIcon size={14} />
+    case 'playstation-store':
+      return <PlaystationIcon size={17} />
+    case 'epic-games':
+      return <EpicGamesIcon size={17} />
+    case 'steam':
+      return <SteamIcon size={15} />
+    case 'nintendo':
+      return <NintendoIcon size={17} />
+    case 'apple-appstore':
+      return <AppstoreIcon size={15} />
+    case 'google-play':
+      return <PlaystoreIcon size={15} />
+    case 'itch':
+      return <ItchIcon size={24} />
+    default:
+      return <Text style={tailwind('text-white')}>{store}</Text>
   }
 }
 
