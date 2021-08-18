@@ -24,6 +24,7 @@ import {
 import moment from 'moment'
 import axios from 'axios'
 import { Linking } from 'react-native'
+import GameDetailHeader from '../components/game-detail/GameDetailHeader'
 
 const GameDetail = () => {
   const [gameData, setGameData] = useState(null)
@@ -110,34 +111,11 @@ const GameDetail = () => {
         <Header arrow />
         {gameData && gameScreenshots && gameStores && fontsLoaded ? (
           <ScrollView style={tailwind('mt-4 flex-1')}>
-            <View style={tailwind('mx-4 flex-row w-full items-center')}>
-              {gameData.released ? (
-                <View style={tailwind('bg-white rounded px-2 py-1 mr-2')}>
-                  <Text
-                    style={{
-                      ...tailwind('text-main-grey tracking-widest text-xs'),
-                      fontFamily: 'Poppins_400Regular',
-                    }}
-                  >
-                    {moment(gameData.released).format('MMM D, YYYY')}
-                  </Text>
-                </View>
-              ) : null}
-              <View style={tailwind('flex-row')}>
-                {gameData.parent_platforms.map((platform) =>
-                  getIcon(platform.platform.name)
-                )}
-              </View>
-            </View>
-
-            <Text
-              style={{
-                ...tailwind('mx-4 text-white text-3xl mb-2 w-full pt-3 pb-4'),
-                fontFamily: 'Poppins_700Bold',
-              }}
-            >
-              {gameData.name}
-            </Text>
+            <GameDetailHeader
+              releaseDate={gameData.released}
+              platforms={gameData.parent_platforms}
+              name={gameData.name}
+            />
 
             {gameScreenshots.results.length ? (
               <View style={tailwind('w-full mb-6')}>
