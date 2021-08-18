@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { SafeAreaView, ScrollView, View } from 'react-native'
 import { tailwind } from '../../tailwind'
 import BrowseSection from '../components/BrowseSection'
@@ -7,10 +7,12 @@ import Header from '../components/Header'
 import fetchData from '../api/rawg'
 import axios from 'axios'
 import AppLoading from 'expo-app-loading'
+import { HomeContext } from '../context/HomeContext'
 
 const HomeScreen = () => {
-  const [newReleases, setNewReleases] = useState(null)
-  const [bestScore, setBestScore] = useState(null)
+  const { releases, score } = useContext(HomeContext)
+  const [newReleases, setNewReleases] = releases
+  const [bestScore, setBestScore] = score
 
   const getData = async () => {
     try {
@@ -39,11 +41,13 @@ const HomeScreen = () => {
               <Header />
               <BrowseSection />
               <GamesCarousel
+                context={[newReleases, setNewReleases]}
                 title="New releases"
                 data={newReleases ? newReleases.results : null}
                 loading={newReleases ? false : true}
               />
               <GamesCarousel
+                context={[bestScore, setBestScore]}
                 title="Best score"
                 data={bestScore ? bestScore.results : null}
                 loading={bestScore ? false : true}
