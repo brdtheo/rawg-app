@@ -127,35 +127,39 @@ const GameDetail = () => {
               {gameData.name}
             </Text>
 
-            <View style={tailwind('w-full mb-6')}>
-              <FlatList
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={tailwind('pl-4 h-36')}
-                horizontal={true}
-                data={gameScreenshots.results}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={ScreenshotItem}
-              />
-            </View>
-
-            <View style={tailwind('mx-4 mb-6')}>
-              <Text
-                style={{
-                  ...tailwind('text-lg text-white text-opacity-40 mb-1.5'),
-                  fontFamily: 'Poppins_400Regular',
-                }}
-              >
-                Where to buy
-              </Text>
-              <View style={tailwind('flex-row flex-wrap')}>
+            {gameScreenshots.results.length ? (
+              <View style={tailwind('w-full mb-6')}>
                 <FlatList
-                  columnWrapperStyle={tailwind('justify-between')}
-                  data={gameData.stores}
-                  numColumns={2}
-                  renderItem={StoreLink}
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={tailwind('pl-4 h-36')}
+                  horizontal={true}
+                  data={gameScreenshots.results}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={ScreenshotItem}
                 />
               </View>
-            </View>
+            ) : null}
+
+            {gameData.stores.length ? (
+              <View style={tailwind('mx-4 mb-6')}>
+                <Text
+                  style={{
+                    ...tailwind('text-lg text-white text-opacity-40 mb-1.5'),
+                    fontFamily: 'Poppins_400Regular',
+                  }}
+                >
+                  Where to buy
+                </Text>
+                <View style={tailwind('flex-row flex-wrap')}>
+                  <FlatList
+                    columnWrapperStyle={tailwind('justify-between')}
+                    data={gameData.stores}
+                    numColumns={2}
+                    renderItem={StoreLink}
+                  />
+                </View>
+              </View>
+            ) : null}
 
             <View style={tailwind('mx-4 mb-6')}>
               <Text
