@@ -25,6 +25,7 @@ import { Linking } from 'react-native'
 import GameDetailHeader from '../components/detail-screen/GameDetailHeader'
 import GameDetailScreenshots from '../components/detail-screen/GameDetailScreenshots'
 import GameDetailStores from '../components/detail-screen/GameDetailStores'
+import GameDetailAbout from '../components/detail-screen/GameDetailAbout'
 
 const GameDetail = () => {
   const [gameData, setGameData] = useState(null)
@@ -87,25 +88,7 @@ const GameDetail = () => {
               <GameDetailStores gameData={gameData} gameStores={gameStores} />
             ) : null}
 
-            <View style={tailwind('mx-4 mb-6')}>
-              <Text
-                style={{
-                  ...tailwind('text-lg text-white mb-1.5'),
-                  fontFamily: 'Poppins_700Bold',
-                }}
-              >
-                About
-              </Text>
-
-              <Text
-                style={{
-                  ...tailwind('text-white leading-5'),
-                  fontFamily: 'Poppins_400Regular',
-                }}
-              >
-                {gameData.description_raw}
-              </Text>
-            </View>
+            <GameDetailAbout description={gameData.description_raw} />
 
             <View
               style={tailwind('mx-4 mb-6 flex-row justify-between flex-wrap')}
