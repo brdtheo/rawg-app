@@ -30,6 +30,11 @@ const HomeScreen = () => {
 
   useEffect(() => {
     getData()
+
+    return () => {
+      setNewReleases(null)
+      setBestScore(null)
+    }
   }, [])
 
   return (

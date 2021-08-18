@@ -26,16 +26,23 @@ import axios from 'axios'
 import { Linking } from 'react-native'
 
 const GameDetail = () => {
-  useEffect(() => {
-    setExpandHeader(false)
-    getDameData()
-  }, [])
   const [gameData, setGameData] = useState(null)
   const [gameScreenshots, setGameScreenshots] = useState(null)
   const [gameStores, setGameStores] = useState(null)
   const { header } = useContext(SearchContext)
   const [expandHeader, setExpandHeader] = header
   const gameSlug = useRoute().params.slug
+  useEffect(() => {
+    setExpandHeader(false)
+    getDameData()
+
+    return () => {
+      setExpandHeader(true)
+      setGameData(null)
+      setGameScreenshots(null)
+      setGameStores(null)
+    }
+  }, [])
 
   const getDameData = async () => {
     try {

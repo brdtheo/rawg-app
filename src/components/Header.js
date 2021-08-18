@@ -18,6 +18,11 @@ const Header = ({ arrow }) => {
   useEffect(() => {
     getGamesCount()
     getPlatforms()
+
+    return () => {
+      setGamesCount(0)
+      setGamesPlatforms(null)
+    }
   }, [])
 
   const route = useRoute()
