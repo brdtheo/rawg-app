@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import { tailwind } from '../../tailwind'
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins'
 import { useNavigation } from '@react-navigation/native'
-import { getIcon } from '../utilities/Utils'
+import { getIcon, getScoreColor } from '../utilities/Utils'
 
 const GameCard = ({
   name,
@@ -18,22 +18,6 @@ const GameCard = ({
     Poppins_700Bold,
   })
   const navigation = useNavigation()
-
-  const getScoreColor = (score) => {
-    const parsedScore = parseInt(score)
-
-    if (!score) {
-      console.error('cannot return score color: no score provided')
-    }
-
-    if (parsedScore > 50 && parsedScore < 75) {
-      return '#FDCA52'
-    } else if (parsedScore >= 75) {
-      return '#44BD49'
-    } else {
-      return '#fff'
-    }
-  }
 
   return (
     <>
