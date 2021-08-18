@@ -11,6 +11,13 @@ const fetchData = async (path, keyChar) => {
     } catch (err) {
       console.error(err)
     }
+  } else if (path && !keyChar) {
+    try {
+      const data = await axios.get(path)
+      return data.data
+    } catch (err) {
+      console.error(err)
+    }
   } else {
     console.error('cannot trigger API request: no path or keyChar provided')
   }
