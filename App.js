@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from './src/screens/HomeScreen'
 import { SearchProvider } from './src/context/SearchContext'
 import SearchScreen from './src/screens/SearchScreen'
+import DetailScreen from './src/screens/DetailScreen'
 
 const Stack = createStackNavigator()
 
@@ -19,6 +20,7 @@ const AppStack = () => {
         >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Search" component={SearchScreen} />
+          <Stack.Screen name="Detail" component={DetailScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SearchProvider>
