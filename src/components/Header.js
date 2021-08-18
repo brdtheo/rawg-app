@@ -9,7 +9,7 @@ import {
 import { SearchContext } from '../context/SearchContext'
 import fetchData from '../api/rawg'
 import { Ionicons } from '@expo/vector-icons'
-import RawgSelect from './RawgSelect'
+import RawgSelect from './search-screen/RawgSelect'
 import { useRoute } from '@react-navigation/native'
 import { formatNumber } from '../utilities/Utils'
 import { useNavigation } from '@react-navigation/native'

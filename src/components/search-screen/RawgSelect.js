@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet } from 'react-native'
 import RNPickerSelect from 'react-native-picker-select'
-import { tailwind } from '../../tailwind'
 import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins'
 import { Ionicons } from '@expo/vector-icons'
 

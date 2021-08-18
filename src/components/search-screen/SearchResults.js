@@ -1,16 +1,16 @@
 import React, { useContext } from 'react'
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
-import { SearchContext } from '../context/SearchContext'
-import { tailwind } from '../../tailwind'
+import { SearchContext } from '../../context/SearchContext'
+import { tailwind } from '../../../tailwind'
 import {
   useFonts,
   Poppins_400Regular,
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins'
-import GameCard from './GameCard'
-import CategoryCard from './CategoryCard'
+import GameCard from '../GameCard'
+import CategoryCard from '../CategoryCard'
 import { useRoute } from '@react-navigation/native'
-import { formatNumber, fetchNextData } from '../utilities/Utils'
+import { formatNumber, fetchNextData } from '../../utilities/Utils'
 import { Ionicons } from '@expo/vector-icons'
 
 const SearchResults = () => {

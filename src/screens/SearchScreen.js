@@ -2,7 +2,7 @@ import React from 'react'
 import { SafeAreaView, View } from 'react-native'
 import { tailwind } from '../../tailwind'
 import Header from '../components/Header'
-import SearchResults from '../components/SearchResults'
+import SearchResults from '../components/search-screen/SearchResults'
 
 const SearchScreen = () => {
   return (
