@@ -3,8 +3,9 @@ import { FlatList, View, Text } from 'react-native'
 import { tailwind } from '../../tailwind'
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins'
 import GameCard from './GameCard'
+import { fetchNextData } from '../utilities/Utils'
 
-const GamesCarousel = ({ title, data, loading }) => {
+const GamesCarousel = ({ title, data, loading, context }) => {
   const [fontsLoaded] = useFonts({
     Poppins_700Bold,
   })
@@ -60,6 +61,7 @@ const GamesCarousel = ({ title, data, loading }) => {
               data={data}
               keyExtractor={(item) => item.slug}
               renderItem={Item}
+              onEndReached={() => fetchNextData(context[0], context[1])}
             />
           )}
         </View>
