@@ -14,7 +14,7 @@ import fetchData from '../api/rawg'
 import Header from '../components/Header'
 import { SearchContext } from '../context/SearchContext'
 import { useRoute } from '@react-navigation/native'
-import { getIcon, getScoreColor, getStoreIcon } from '../utilities/Utils'
+import { getScoreColor, getStoreIcon } from '../utilities/Utils'
 import {
   useFonts,
   Poppins_400Regular,
@@ -25,6 +25,7 @@ import moment from 'moment'
 import axios from 'axios'
 import { Linking } from 'react-native'
 import GameDetailHeader from '../components/game-detail/GameDetailHeader'
+import GameDetailScreenshots from '../components/game-detail/GameDetailScreenshots'
 
 const GameDetail = () => {
   const [gameData, setGameData] = useState(null)
@@ -96,15 +97,6 @@ const GameDetail = () => {
     </TouchableOpacity>
   )
 
-  const ScreenshotItem = ({ item }) => (
-    <TouchableOpacity style={tailwind('mr-6 w-60 h-full')}>
-      <Image
-        source={{ uri: item.image }}
-        style={tailwind('w-full h-full rounded-lg')}
-      />
-    </TouchableOpacity>
-  )
-
   return (
     <SafeAreaView style={tailwind('bg-main-grey flex-1')}>
       <View style={tailwind('flex-1')}>
@@ -118,16 +110,7 @@ const GameDetail = () => {
             />
 
             {gameScreenshots.results.length ? (
-              <View style={tailwind('w-full mb-6')}>
-                <FlatList
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={tailwind('pl-4 h-36')}
-                  horizontal={true}
-                  data={gameScreenshots.results}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={ScreenshotItem}
-                />
-              </View>
+              <GameDetailScreenshots data={gameScreenshots.results} />
             ) : null}
 
             {gameData.stores.length ? (
