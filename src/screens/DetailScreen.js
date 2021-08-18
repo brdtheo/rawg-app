@@ -26,6 +26,7 @@ import GameDetailHeader from '../components/detail-screen/GameDetailHeader'
 import GameDetailScreenshots from '../components/detail-screen/GameDetailScreenshots'
 import GameDetailStores from '../components/detail-screen/GameDetailStores'
 import GameDetailAbout from '../components/detail-screen/GameDetailAbout'
+import GameDetailInfoGrid from '../components/detail-screen/GameDetailInfoGrid'
 
 const GameDetail = () => {
   const [gameData, setGameData] = useState(null)
@@ -90,214 +91,17 @@ const GameDetail = () => {
 
             <GameDetailAbout description={gameData.description_raw} />
 
-            <View
-              style={tailwind('mx-4 mb-6 flex-row justify-between flex-wrap')}
-            >
-              <View style={{ ...tailwind('mb-6'), width: '46%' }}>
-                <Text
-                  style={{
-                    ...tailwind('text-white text-opacity-40'),
-                    fontFamily: 'Poppins_500Medium',
-                  }}
-                >
-                  Platforms
-                </Text>
-                <View style={tailwind('mt-2 flex-row flex-wrap')}>
-                  {gameData.parent_platforms.map((p, index) => (
-                    <Text
-                      style={{
-                        ...tailwind('text-white underline'),
-                        marginRight:
-                          index === gameData.parent_platforms.length - 1
-                            ? 0
-                            : 5,
-                        marginBottom:
-                          index === gameData.parent_platforms.length - 1
-                            ? 0
-                            : 5,
-                      }}
-                    >
-                      {p.platform.name}
-                      {index === gameData.parent_platforms.length - 1
-                        ? ''
-                        : ','}
-                    </Text>
-                  ))}
-                </View>
-              </View>
-
-              {gameData.metacritic ? (
-                <View style={{ ...tailwind('mb-6'), width: '46%' }}>
-                  <Text
-                    style={{
-                      ...tailwind('text-white text-opacity-40'),
-                      fontFamily: 'Poppins_500Medium',
-                    }}
-                  >
-                    Metascore
-                  </Text>
-                  <View style={tailwind('mt-2 flex-row flex-wrap')}>
-                    <View
-                      style={{
-                        ...tailwind('flex px-1 border rounded'),
-                        borderColor: getScoreColor(gameData.metacritic),
-                      }}
-                    >
-                      <Text
-                        style={{
-                          color: getScoreColor(gameData.metacritic),
-                          fontFamily: 'Poppins_700Bold',
-                        }}
-                      >
-                        {gameData.metacritic}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              ) : null}
-
-              {gameData.genres ? (
-                <View style={{ ...tailwind('mb-6'), width: '46%' }}>
-                  <Text
-                    style={{
-                      ...tailwind('text-white text-opacity-40'),
-                      fontFamily: 'Poppins_500Medium',
-                    }}
-                  >
-                    Genres
-                  </Text>
-                  <View style={tailwind('mt-2 flex-row flex-wrap')}>
-                    {gameData.genres.map((g, index) => (
-                      <Text
-                        style={{
-                          ...tailwind('text-white underline'),
-                          marginRight:
-                            index === gameData.genres.length - 1 ? 0 : 5,
-                          marginBottom:
-                            index === gameData.genres.length - 1 ? 0 : 5,
-                        }}
-                      >
-                        {g.name}
-                        {index === gameData.genres.length - 1 ? '' : ','}
-                      </Text>
-                    ))}
-                  </View>
-                </View>
-              ) : null}
-
-              {gameData.released ? (
-                <View style={{ ...tailwind('mb-6'), width: '46%' }}>
-                  <Text
-                    style={{
-                      ...tailwind('text-white text-opacity-40'),
-                      fontFamily: 'Poppins_500Medium',
-                    }}
-                  >
-                    Release date
-                  </Text>
-                  <View style={tailwind('mt-2 flex-row flex-wrap')}>
-                    <Text style={tailwind('text-white')}>
-                      {moment(gameData.released).format('MMM D, YYYY')}
-                    </Text>
-                  </View>
-                </View>
-              ) : null}
-
-              {gameData.updated ? (
-                <View style={{ ...tailwind('mb-6'), width: '46%' }}>
-                  <Text
-                    style={{
-                      ...tailwind('text-white text-opacity-40'),
-                      fontFamily: 'Poppins_500Medium',
-                    }}
-                  >
-                    Updated
-                  </Text>
-                  <View style={tailwind('mt-2 flex-row flex-wrap')}>
-                    <Text style={tailwind('text-white')}>
-                      {moment(gameData.updated).format('MMM D, YYYY')}
-                    </Text>
-                  </View>
-                </View>
-              ) : null}
-
-              {gameData.playtime ? (
-                <View style={{ ...tailwind('mb-6'), width: '46%' }}>
-                  <Text
-                    style={{
-                      ...tailwind('text-white text-opacity-40'),
-                      fontFamily: 'Poppins_500Medium',
-                    }}
-                  >
-                    Average playtime
-                  </Text>
-                  <View style={tailwind('mt-2 flex-row flex-wrap')}>
-                    <Text style={tailwind('text-white')}>
-                      {gameData.playtime} hour
-                      {gameData.playtime > 1 ? 's' : null}
-                    </Text>
-                  </View>
-                </View>
-              ) : null}
-
-              {gameData.website ? (
-                <View style={{ ...tailwind('mb-6'), width: '46%' }}>
-                  <Text
-                    style={{
-                      ...tailwind('text-white text-opacity-40'),
-                      fontFamily: 'Poppins_500Medium',
-                    }}
-                  >
-                    Website
-                  </Text>
-                  <View style={tailwind('mt-2 flex-row flex-wrap')}>
-                    <TouchableOpacity
-                      onPress={() => Linking.openURL(gameData.website)}
-                    >
-                      <Text style={tailwind('text-white underline')}>
-                        {gameData.website}
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ) : null}
-
-              {gameData.achievements_count ? (
-                <View style={{ ...tailwind('mb-6'), width: '46%' }}>
-                  <Text
-                    style={{
-                      ...tailwind('text-white text-opacity-40'),
-                      fontFamily: 'Poppins_500Medium',
-                    }}
-                  >
-                    Achievements
-                  </Text>
-                  <View style={tailwind('mt-2 flex-row flex-wrap')}>
-                    <Text style={tailwind('text-white')}>
-                      {gameData.achievements_count}
-                    </Text>
-                  </View>
-                </View>
-              ) : null}
-
-              {gameData.esrb_rating ? (
-                <View style={{ ...tailwind('mb-6'), width: '46%' }}>
-                  <Text
-                    style={{
-                      ...tailwind('text-white text-opacity-40'),
-                      fontFamily: 'Poppins_500Medium',
-                    }}
-                  >
-                    ESRB Rating
-                  </Text>
-                  <View style={tailwind('mt-2 flex-row flex-wrap')}>
-                    <Text style={tailwind('text-white')}>
-                      {gameData.esrb_rating.name}
-                    </Text>
-                  </View>
-                </View>
-              ) : null}
-            </View>
+            <GameDetailInfoGrid
+              platforms={gameData.parent_platforms}
+              metacritic={gameData.metacritic}
+              genres={gameData.genres}
+              releaseDate={gameData.released}
+              updateDate={gameData.updated}
+              playtime={gameData.playtime}
+              website={gameData.website}
+              achievementsCount={gameData.achievements_count}
+              esrb={gameData.esrb_rating}
+            />
           </ScrollView>
         ) : (
           <View style={tailwind('justify-center items-center flex-1')}>
