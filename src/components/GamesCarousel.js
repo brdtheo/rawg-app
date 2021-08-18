@@ -58,7 +58,7 @@ const GamesCarousel = ({ title, data, loading }) => {
               contentContainerStyle={tailwind('pl-4')}
               horizontal={true}
               data={data}
-              keyExtractor={(item, index) => index.toString()}
+              keyExtractor={(item) => item.slug}
               renderItem={Item}
             />
           )}
