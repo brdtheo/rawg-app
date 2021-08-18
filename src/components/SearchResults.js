@@ -10,13 +10,13 @@ import {
 import GameCard from './GameCard'
 import CategoryCard from './CategoryCard'
 import { useRoute } from '@react-navigation/native'
-import { formatNumber } from '../utilities/Utils'
+import { formatNumber, fetchNextData } from '../utilities/Utils'
 import { Ionicons } from '@expo/vector-icons'
 
 const SearchResults = () => {
   const { text, result, header } = useContext(SearchContext)
   const [searchText] = text
-  const [searchResult] = result
+  const [searchResult, setSearchResult] = result
   const [expandHeader, setExpandHeader] = header
 
   const [fontsLoaded] = useFonts({
@@ -87,15 +87,15 @@ const SearchResults = () => {
 
           {searchResult && searchResult.results ? (
             <FlatList
-              showsVerticalScrollIndicator={false}
               data={searchResult.results}
-              keyExtractor={(item) => item.name}
+              keyExtractor={(item) => item.slug}
               renderItem={
                 route.params && route.params.card === 'game'
                   ? GameCardItem
                   : CategoryCardItem
               }
               style={tailwind('mt-4')}
+              onEndReached={() => fetchNextData(searchResult, setSearchResult)}
             />
           ) : (
             <View style={tailwind('w-full mt-4')}>
