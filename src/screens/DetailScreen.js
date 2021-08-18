@@ -45,8 +45,6 @@ const GameDetail = () => {
         fetchData(`games/${gameSlug}/stores`, '?'),
       ])
 
-      console.log(gameData[0].stores)
-
       setGameData(gameData[0])
       setGameScreenshots(gameData[1])
       setGameStores(gameData[2])
