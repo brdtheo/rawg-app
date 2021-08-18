@@ -20,6 +20,7 @@ import GogIcon from '../components/icons/GogIcon'
 import PlaystoreIcon from '../components/icons/PlaystoreIcon'
 import ItchIcon from '../components/icons/ItchIcon'
 import { tailwind } from '../../tailwind'
+import fetchData from '../api/rawg'
 
 export const formatNumber = (number) => {
   return new Intl.NumberFormat('en-EN').format(number)
@@ -98,5 +99,26 @@ export const getScoreColor = (score) => {
     return '#44BD49'
   } else {
     return '#fff'
+  }
+}
+
+export const fetchNextData = async (currentContext, contextAction) => {
+  try {
+    if (currentContext.next) {
+      const data = await fetchData(currentContext.next)
+
+      if (!data) {
+        return console.error('no data')
+      }
+
+      if (currentContext.results.length && data.results.length) {
+        contextAction((oldData) => ({
+          ...data,
+          results: [...oldData.results, ...data.results],
+        }))
+      }
+    }
+  } catch (err) {
+    console.error(err)
   }
 }
