@@ -14,7 +14,7 @@ import fetchData from '../api/rawg'
 import Header from '../components/Header'
 import { SearchContext } from '../context/SearchContext'
 import { useRoute } from '@react-navigation/native'
-import { getIcon, getScoreColor } from '../utilities/Utils'
+import { getIcon, getScoreColor, getStoreIcon } from '../utilities/Utils'
 import {
   useFonts,
   Poppins_400Regular,
@@ -45,6 +45,8 @@ const GameDetail = () => {
         fetchData(`games/${gameSlug}/stores`, '?'),
       ])
 
+      console.log(gameData[0].stores)
+
       setGameData(gameData[0])
       setGameScreenshots(gameData[1])
       setGameStores(gameData[2])
@@ -66,7 +68,9 @@ const GameDetail = () => {
   const StoreLink = ({ item, index }) => (
     <TouchableOpacity
       style={{
-        ...tailwind('bg-store-grey py-3 rounded-lg'),
+        ...tailwind(
+          'bg-store-grey py-3 rounded-lg flex-row justify-center items-center'
+        ),
         width: '49%',
         marginBottom: index === gameData.stores.length - 1 ? 0 : 8,
       }}
@@ -74,12 +78,15 @@ const GameDetail = () => {
     >
       <Text
         style={{
-          ...tailwind('text-white text-opacity-40 text-xs text-center'),
+          ...tailwind('text-white text-opacity-40 text-xs'),
           fontFamily: 'Poppins_400Regular',
         }}
       >
         {item.store.name}
       </Text>
+      <View style={tailwind('opacity-40 w-5 ml-1 justify-center')}>
+        {getStoreIcon(item.store.slug)}
+      </View>
     </TouchableOpacity>
   )
 
