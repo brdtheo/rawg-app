@@ -22,9 +22,9 @@ import {
 import moment from 'moment'
 import axios from 'axios'
 import { Linking } from 'react-native'
-import GameDetailHeader from '../components/game-detail/GameDetailHeader'
-import GameDetailScreenshots from '../components/game-detail/GameDetailScreenshots'
-import GameDetailStores from '../components/game-detail/GameDetailStores'
+import GameDetailHeader from '../components/detail-screen/GameDetailHeader'
+import GameDetailScreenshots from '../components/detail-screen/GameDetailScreenshots'
+import GameDetailStores from '../components/detail-screen/GameDetailStores'
 
 const GameDetail = () => {
   const [gameData, setGameData] = useState(null)
