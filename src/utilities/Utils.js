@@ -27,7 +27,7 @@ export const formatNumber = (number) => {
   return new Intl.NumberFormat('en-EN').format(number)
 }
 
-export const formatDate = (date) =>{
+export const formatDate = (date) => {
   return moment(date).format('MMM D, YYYY')
 }
 
@@ -60,7 +60,7 @@ export const getIcon = (platform) => {
     case '3DO':
       return <ThreeDOIcon size={16} />
     default:
-      return <Text style={tailwind('text-white')}>{platform}</Text>
+      return console.warn(platform)
   }
 }
 
