@@ -138,11 +138,12 @@ const CategoryCard = ({ name, image, games, gamesCount, placeholder }) => {
                   />
 
                   {games
-                    ? games.slice(0, 3).map((game) => (
+                    ? games.slice(0, 3).map((game, index) => (
                         <View
                           style={tailwind(
                             'w-full flex-row items-center justify-between mb-3'
                           )}
+                          key={index.toString()}
                         >
                           <Text
                             numberOfLines={1}

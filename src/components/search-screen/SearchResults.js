@@ -169,7 +169,7 @@ const SearchResults = () => {
           {searchResult && searchResult.results ? (
             <FlatList
               data={searchResult.results}
-              keyExtractor={(item) => item.slug}
+              keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => {
                 if (route.params.card === 'game') {
                   return GameCardItem(item)

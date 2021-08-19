@@ -66,9 +66,11 @@ const GameCard = ({
               >
                 {platforms ? (
                   <View style={tailwind('flex flex-row')}>
-                    {platforms.map((platform) =>
-                      getIcon(platform.platform.name)
-                    )}
+                    {platforms.map((platform, index) => (
+                      <View key={index.toString()} style={tailwind('justify-center')}>
+                        {getIcon(platform.platform.name)}
+                      </View>
+                    ))}
                   </View>
                 ) : null}
                 {score ? (
