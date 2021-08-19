@@ -32,8 +32,12 @@ const GameDetailHeader = ({ name, releaseDate, platforms }) => {
                 </Text>
               </View>
             ) : null}
-            <View style={tailwind('flex-row')}>
-              {platforms.map((platform) => getIcon(platform.platform.name))}
+            <View style={tailwind('flex-row items-center')}>
+              {platforms.map((platform, index) => (
+                <View key={index.toString()} style={tailwind('justify-center')}>
+                  {getIcon(platform.platform.name)}
+                </View>
+              ))}
             </View>
           </View>
 

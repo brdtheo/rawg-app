@@ -47,6 +47,7 @@ const GameDetailInfoGrid = ({
           <InfoGridItem title="Platforms">
             {platforms.map((p, index) => (
               <Text
+                key={index.toString()}
                 style={{
                   ...tailwind('text-white underline'),
                   marginRight: index === platforms.length - 1 ? 0 : 5,
@@ -83,6 +84,7 @@ const GameDetailInfoGrid = ({
             <InfoGridItem title="Genres">
               {genres.map((g, index) => (
                 <Text
+                  key={index.toString()}
                   style={{
                     ...tailwind('text-white underline'),
                     marginRight: index === genres.length - 1 ? 0 : 5,
