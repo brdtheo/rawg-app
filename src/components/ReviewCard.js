@@ -1,0 +1,121 @@
+import React from 'react'
+import { Text, View, ImageBackground, Image } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient'
+import { tailwind } from '../../tailwind'
+import {
+  useFonts,
+  Poppins_700Bold,
+  Poppins_400Regular,
+} from '@expo-google-fonts/poppins'
+import RenderHTML from 'react-native-render-html'
+import { ScrollView } from 'react-native'
+import { formatDate } from '../utilities/Utils'
+
+const ReviewCard = ({
+  image,
+  title,
+  rating,
+  content,
+  date,
+  author,
+  likes,
+  placeholder,
+}) => {
+  const [fontsLoaded] = useFonts({
+    Poppins_700Bold,
+    Poppins_400Regular,
+  })
+
+  const getRatingIcon = (rating) => {
+    let uri
+
+    switch (rating) {
+      case 'skip':
+        uri = require('../../assets/skip.png')
+        break
+      case 'meh':
+        uri = require('../../assets/meh.png')
+        break
+      case 'recommended':
+        uri = require('../../assets/recommended.png')
+        break
+      case 'exceptional':
+        uri = require('../../assets/exceptional.png')
+        break
+    }
+
+    return (
+      <View style={tailwind('w-6 h-6')}>
+        <ImageBackground style={tailwind('w-full h-full')} source={uri} />
+      </View>
+    )
+  }
+
+  return (
+    <>
+      {fontsLoaded ? (
+        <ScrollView
+          style={{
+            ...tailwind('rounded bg-card-grey w-full h-72'),
+            shadowColor: '#202020',
+            shadowOpacity: 0.07,
+            shadowOffset: {
+              width: 0,
+              height: 8,
+            },
+            shadowRadius: 4,
+            elevation: 2,
+            overflow: 'hidden',
+          }}
+        >
+          <ImageBackground
+            source={{ uri: image }}
+            style={tailwind('w-full h-32 absolute top-0 left-0')}
+          >
+            <LinearGradient
+              end={{ x: 0.5, y: 0.8 }}
+              colors={['rgba(32,32,32,0.6)', '#202020']}
+              style={tailwind('w-full h-full')}
+            />
+          </ImageBackground>
+
+          <View style={tailwind('p-6')}>
+            <View
+              style={tailwind('flex-row mb-2 items-center w-full flex-wrap')}
+            >
+              <Text
+                style={{
+                  ...tailwind('underline text-xl text-white mr-1 flex-1'),
+                  fontFamily: 'Poppins_700Bold',
+                }}
+              >
+                {title}
+              </Text>
+              {getRatingIcon(rating)}
+            </View>
+
+            <View style={tailwind('mb-4')}>
+              <Text
+                style={{
+                  ...tailwind('text-white text-xs'),
+                  fontFamily: 'Poppins_400Regular',
+                }}
+              >
+                {author} - {formatDate(date)}
+              </Text>
+            </View>
+
+            <RenderHTML
+              source={{
+                html: `<div style="color: white; opacity: 0.6; font-size: 1rem; line-height: 1.5rem;">${content}</div>`,
+              }}
+              contentWidth={100}
+            />
+          </View>
+        </ScrollView>
+      ) : null}
+    </>
+  )
+}
+
+export default React.memo(ReviewCard)
