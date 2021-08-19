@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, ImageBackground, Image } from 'react-native'
+import { Text, View, ImageBackground } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { tailwind } from '../../tailwind'
 import {
