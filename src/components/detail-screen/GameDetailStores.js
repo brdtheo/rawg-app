@@ -2,6 +2,7 @@ import React from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
 import { tailwind } from '../../../tailwind'
 import { getStoreIcon } from '../../utilities/Utils'
+import { Linking } from 'react-native'
 
 const GameDetailStores = ({ gameData, gameStores }) => {
   const findStoreURL = (storeId) => {
