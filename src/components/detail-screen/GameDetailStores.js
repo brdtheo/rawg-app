@@ -18,16 +18,15 @@ const GameDetailStores = ({ gameData, gameStores }) => {
       >
         Where to buy
       </Text>
-      <View style={tailwind('flex-row flex-wrap')}>
+      <View style={tailwind('flex-row flex-wrap justify-between')}>
         {gameData.stores.map((item, index) => (
           <TouchableOpacity
             key={index.toString()}
             style={{
               ...tailwind(
-                'bg-store-grey py-3 rounded-lg flex-row justify-center items-center'
+                'bg-store-grey py-3 rounded-lg flex-row justify-center items-center mb-2'
               ),
               width: '49%',
-              marginBottom: index === gameData.stores.length - 1 ? 0 : 8,
             }}
             onPress={() => Linking.openURL(findStoreURL(item.store.id))}
           >

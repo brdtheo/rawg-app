@@ -18,6 +18,7 @@ const ReviewCard = ({
   content,
   date,
   author,
+  authorAvatar,
   placeholder,
 }) => {
   const [fontsLoaded] = useFonts({
@@ -110,14 +111,42 @@ const ReviewCard = ({
               {placeholder ? (
                 <View style={tailwind('rounded bg-gray-200 w-32 h-6')} />
               ) : (
-                <Text
-                  style={{
-                    ...tailwind('text-white text-xs'),
-                    fontFamily: 'Poppins_400Regular',
-                  }}
-                >
-                  {author} - {formatDate(date)}
-                </Text>
+                <View style={tailwind('flex-row')}>
+                  {authorAvatar || author.avatar ? (
+                    <View
+                      style={tailwind(
+                        'w-8 h-8 mr-2 rounded-full overflow-hidden'
+                      )}
+                    >
+                      <ImageBackground
+                        style={tailwind('w-full h-full')}
+                        source={{
+                          uri: author.avatar ? author.avatar : authorAvatar,
+                        }}
+                      />
+                    </View>
+                  ) : null}
+                  <View>
+                    <Text
+                      style={{
+                        ...tailwind('text-white text-xs'),
+                        fontFamily: 'Poppins_400Regular',
+                      }}
+                    >
+                      {author.username
+                        ? author.username
+                        : author}
+                    </Text>
+                    <Text
+                      style={{
+                        ...tailwind('text-white text-xs text-opacity-60'),
+                        fontFamily: 'Poppins_400Regular',
+                      }}
+                    >
+                      {formatDate(date)}
+                    </Text>
+                  </View>
+                </View>
               )}
             </View>
 

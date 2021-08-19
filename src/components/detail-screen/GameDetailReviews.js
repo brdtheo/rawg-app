@@ -14,6 +14,8 @@ const GameDetailReviews = ({ reviews }) => {
     Poppins_700Bold,
   })
 
+  console.log(reviews)
+
   return (
     <>
       {fontsLoaded ? (
@@ -33,7 +35,10 @@ const GameDetailReviews = ({ reviews }) => {
                 <ReviewCard
                   content={item.text}
                   date={item.edited ? item.edited : item.created}
-                  author={item.user ? item.user.username : null}
+                  author={item.user ? item.user : item.external_author}
+                  authorAvatar={
+                    item.user ? item.user.avatar : item.external_avatar
+                  }
                   rating={item.rating}
                 />
               </View>
