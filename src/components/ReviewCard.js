@@ -18,7 +18,6 @@ const ReviewCard = ({
   content,
   date,
   author,
-  likes,
   placeholder,
 }) => {
   const [fontsLoaded] = useFonts({
@@ -30,16 +29,16 @@ const ReviewCard = ({
     let uri
 
     switch (rating) {
-      case 'skip':
+      case 1:
         uri = require('../../assets/skip.png')
         break
-      case 'meh':
+      case 3:
         uri = require('../../assets/meh.png')
         break
-      case 'recommended':
+      case 4:
         uri = require('../../assets/recommended.png')
         break
-      case 'exceptional':
+      case 5:
         uri = require('../../assets/exceptional.png')
         break
     }
@@ -68,30 +67,34 @@ const ReviewCard = ({
             overflow: 'hidden',
           }}
         >
-          <ImageBackground
-            source={{ uri: image }}
-            style={tailwind('w-full h-32 absolute top-0 left-0')}
-          >
-            <LinearGradient
-              end={{ x: 0.5, y: 0.8 }}
-              colors={['rgba(32,32,32,0.6)', '#202020']}
-              style={tailwind('w-full h-full')}
-            />
-          </ImageBackground>
+          {image ? (
+            <ImageBackground
+              source={{ uri: image }}
+              style={tailwind('w-full h-32 absolute top-0 left-0')}
+            >
+              <LinearGradient
+                end={{ x: 0.5, y: 0.8 }}
+                colors={['rgba(32,32,32,0.6)', '#202020']}
+                style={tailwind('w-full h-full')}
+              />
+            </ImageBackground>
+          ) : null}
 
           <View style={tailwind('p-6')}>
             <View
               style={tailwind('flex-row mb-2 items-center w-full flex-wrap')}
             >
-              <Text
-                style={{
-                  ...tailwind('underline text-xl text-white mr-1 flex-1'),
-                  fontFamily: 'Poppins_700Bold',
-                }}
-              >
-                {title}
-              </Text>
-              {getRatingIcon(rating)}
+              {title ? (
+                <Text
+                  style={{
+                    ...tailwind('underline text-xl text-white mr-1 flex-1'),
+                    fontFamily: 'Poppins_700Bold',
+                  }}
+                >
+                  {title}
+                </Text>
+              ) : null}
+              <View>{getRatingIcon(rating)}</View>
             </View>
 
             <View style={tailwind('mb-4')}>
