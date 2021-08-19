@@ -64,6 +64,72 @@ const SearchResults = () => {
     </View>
   )
 
+  const getCardPlaceholders = () => {
+    const cardType = route.params.card
+
+    if (cardType === 'game') {
+      return (
+        <View style={tailwind('w-full mt-4')}>
+          <View style={tailwind('mb-6')}>
+            <GameCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <GameCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <GameCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <GameCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <GameCard placeholder />
+          </View>
+        </View>
+      )
+    } else if (cardType === 'category') {
+      return (
+        <View style={tailwind('w-full mt-4')}>
+          <View style={tailwind('mb-6')}>
+            <CategoryCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <CategoryCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <CategoryCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <CategoryCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <CategoryCard placeholder />
+          </View>
+        </View>
+      )
+    } else if (cardType === 'review') {
+      return (
+        <View style={tailwind('w-full mt-4')}>
+          <View style={tailwind('mb-6')}>
+            <ReviewCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <ReviewCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <ReviewCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <ReviewCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <ReviewCard placeholder />
+          </View>
+        </View>
+      )
+    }
+  }
+
   return (
     <>
       {fontsLoaded ? (
@@ -121,23 +187,7 @@ const SearchResults = () => {
               onEndReached={() => fetchNextData(searchResult, setSearchResult)}
             />
           ) : (
-            <View style={tailwind('w-full mt-4')}>
-              <View style={tailwind('mb-6')}>
-                <GameCard placeholder />
-              </View>
-              <View style={tailwind('mb-6')}>
-                <GameCard placeholder />
-              </View>
-              <View style={tailwind('mb-6')}>
-                <GameCard placeholder />
-              </View>
-              <View style={tailwind('mb-6')}>
-                <GameCard placeholder />
-              </View>
-              <View style={tailwind('mb-6')}>
-                <GameCard placeholder />
-              </View>
-            </View>
+            getCardPlaceholders()
           )}
         </View>
       ) : null}
