@@ -29,6 +29,7 @@ const BrowseSection = () => {
       icon: 'review',
       title: 'Reviews',
       query: 'reviews',
+      card: 'review',
     },
     {
       icon: 'genre',
@@ -63,6 +64,7 @@ const BrowseSection = () => {
       title={item.title}
       iconProvider={item.iconProvider}
       query={item.query}
+      card={item.card}
     />
   )
 

@@ -15,7 +15,7 @@ import DeveloperIcon from '../icons/DeveloperIcon'
 import PublisherIcon from '../icons/PublisherIcon'
 import { useNavigation } from '@react-navigation/native'
 
-const BrowseButton = ({ iconProvider, icon, title, query }) => {
+const BrowseButton = ({ icon, title, query, card }) => {
   const { text, result } = useContext(SearchContext)
   const [searchResult, setSearchResult] = result
   const [searchText, setSearchText] = text
@@ -54,7 +54,10 @@ const BrowseButton = ({ iconProvider, icon, title, query }) => {
     try {
       const data = await fetchData(query, '?')
       await setSearchResult(data)
-      navigation.navigate('Search', { filters: false, card: 'category' })
+      navigation.navigate('Search', {
+        filters: false,
+        card: card ? card : 'category',
+      })
     } catch (err) {
       console.error(err)
     }
