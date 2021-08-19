@@ -51,6 +51,19 @@ const ReviewCard = ({
     )
   }
 
+  const getRatingTitle = (rating) => {
+    switch (rating) {
+      case 1:
+        return 'Skip'
+      case 3:
+        return 'Meh'
+      case 4:
+        return 'Recommended'
+      case 5:
+        return 'Exceptional'
+    }
+  }
+
   return (
     <>
       {fontsLoaded ? (
@@ -93,16 +106,14 @@ const ReviewCard = ({
               <View
                 style={tailwind('flex-row mb-2 items-center w-full flex-wrap')}
               >
-                {title ? (
-                  <Text
-                    style={{
-                      ...tailwind('underline text-xl text-white mr-1 flex-1'),
-                      fontFamily: 'Poppins_700Bold',
-                    }}
-                  >
-                    {title}
-                  </Text>
-                ) : null}
+                <Text
+                  style={{
+                    ...tailwind('text-xl text-white mr-1 flex-1'),
+                    fontFamily: 'Poppins_700Bold',
+                  }}
+                >
+                  {title ? title : getRatingTitle(rating)}
+                </Text>
                 <View>{getRatingIcon(rating)}</View>
               </View>
             )}
@@ -133,9 +144,7 @@ const ReviewCard = ({
                         fontFamily: 'Poppins_400Regular',
                       }}
                     >
-                      {author.username
-                        ? author.username
-                        : author}
+                      {author.username ? author.username : author}
                     </Text>
                     <Text
                       style={{
