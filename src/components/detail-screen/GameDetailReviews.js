@@ -15,20 +15,16 @@ const GameDetailReviews = ({ reviews }) => {
     Poppins_700Bold,
   })
 
-  const ReviewItem = ({ item }) => {
-    console.log(item)
-
-    return (
-      <View style={tailwind('mb-4')}>
-        <ReviewCard
-          content={item.text}
-          date={item.edited ? item.edited : item.created}
-          author={item.user ? item.user.username : null}
-          rating={item.rating}
-        />
-      </View>
-    )
-  }
+  const ReviewItem = ({ item }) => (
+    <View style={tailwind('mb-4')}>
+      <ReviewCard
+        content={item.text}
+        date={item.edited ? item.edited : item.created}
+        author={item.user ? item.user.username : null}
+        rating={item.rating}
+      />
+    </View>
+  )
 
   return (
     <>
