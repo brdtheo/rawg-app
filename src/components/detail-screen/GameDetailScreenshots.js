@@ -1,15 +1,15 @@
 import React from 'react'
-import { View, FlatList, TouchableOpacity, Image } from 'react-native'
+import { View, FlatList, Image } from 'react-native'
 import { tailwind } from '../../../tailwind'
 
 const GameDetailScreenshots = ({ data }) => {
   const ScreenshotItem = ({ item }) => (
-    <TouchableOpacity style={tailwind('mr-6 w-60 h-full')}>
+    <View style={tailwind('mr-6 w-60 h-full')}>
       <Image
         source={{ uri: item.image }}
         style={tailwind('w-full h-full rounded-lg')}
       />
-    </TouchableOpacity>
+    </View>
   )
 
   return (
