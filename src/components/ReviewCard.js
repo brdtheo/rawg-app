@@ -81,39 +81,56 @@ const ReviewCard = ({
           ) : null}
 
           <View style={tailwind('p-6')}>
-            <View
-              style={tailwind('flex-row mb-2 items-center w-full flex-wrap')}
-            >
-              {title ? (
-                <Text
-                  style={{
-                    ...tailwind('underline text-xl text-white mr-1 flex-1'),
-                    fontFamily: 'Poppins_700Bold',
-                  }}
-                >
-                  {title}
-                </Text>
-              ) : null}
-              <View>{getRatingIcon(rating)}</View>
-            </View>
+            {placeholder ? (
+              <View
+                style={tailwind('flex-row mb-2 items-center w-full flex-wrap')}
+              >
+                <View style={tailwind('rounded bg-gray-200 flex-1 h-8')} />
+                <View style={tailwind('ml-12 rounded bg-gray-200 w-12 h-8')} />
+              </View>
+            ) : (
+              <View
+                style={tailwind('flex-row mb-2 items-center w-full flex-wrap')}
+              >
+                {title ? (
+                  <Text
+                    style={{
+                      ...tailwind('underline text-xl text-white mr-1 flex-1'),
+                      fontFamily: 'Poppins_700Bold',
+                    }}
+                  >
+                    {title}
+                  </Text>
+                ) : null}
+                <View>{getRatingIcon(rating)}</View>
+              </View>
+            )}
 
             <View style={tailwind('mb-4')}>
-              <Text
-                style={{
-                  ...tailwind('text-white text-xs'),
-                  fontFamily: 'Poppins_400Regular',
-                }}
-              >
-                {author} - {formatDate(date)}
-              </Text>
+              {placeholder ? (
+                <View style={tailwind('rounded bg-gray-200 w-32 h-6')} />
+              ) : (
+                <Text
+                  style={{
+                    ...tailwind('text-white text-xs'),
+                    fontFamily: 'Poppins_400Regular',
+                  }}
+                >
+                  {author} - {formatDate(date)}
+                </Text>
+              )}
             </View>
 
-            <RenderHTML
-              source={{
-                html: `<div style="color: white; opacity: 0.6; font-size: 1rem; line-height: 1.5rem;">${content}</div>`,
-              }}
-              contentWidth={100}
-            />
+            {placeholder ? (
+              <View style={tailwind('rounded bg-gray-200 w-full h-full')} />
+            ) : (
+              <RenderHTML
+                source={{
+                  html: `<div style="color: white; opacity: 0.6; font-size: 1rem; line-height: 1.5rem;">${content}</div>`,
+                }}
+                contentWidth={100}
+              />
+            )}
           </View>
         </ScrollView>
       ) : null}
