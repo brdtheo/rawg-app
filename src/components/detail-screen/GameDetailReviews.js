@@ -14,8 +14,6 @@ const GameDetailReviews = ({ reviews }) => {
     Poppins_700Bold,
   })
 
-  console.log(reviews)
-
   return (
     <>
       {fontsLoaded ? (
