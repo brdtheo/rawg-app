@@ -88,7 +88,9 @@ const GameDetail = () => {
               <GameDetailStores gameData={gameData} gameStores={gameStores} />
             ) : null}
 
-            <GameDetailAbout description={gameData.description_raw} />
+            {gameData.description_raw ? (
+              <GameDetailAbout description={gameData.description_raw} />
+            ) : null}
 
             <GameDetailInfoGrid
               platforms={gameData.parent_platforms}

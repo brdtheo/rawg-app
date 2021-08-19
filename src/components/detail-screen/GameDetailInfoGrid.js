@@ -80,7 +80,7 @@ const GameDetailInfoGrid = ({
             </InfoGridItem>
           ) : null}
 
-          {genres ? (
+          {genres.length ? (
             <InfoGridItem title="Genres">
               {genres.map((g, index) => (
                 <Text
