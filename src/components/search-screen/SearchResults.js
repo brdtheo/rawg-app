@@ -9,6 +9,7 @@ import {
 } from '@expo-google-fonts/poppins'
 import GameCard from '../GameCard'
 import CategoryCard from '../CategoryCard'
+import ReviewCard from '../ReviewCard'
 import { useRoute } from '@react-navigation/native'
 import { formatNumber, fetchNextData } from '../../utilities/Utils'
 import { Ionicons } from '@expo/vector-icons'
@@ -26,7 +27,7 @@ const SearchResults = () => {
 
   const route = useRoute()
 
-  const GameCardItem = ({ item }) => (
+  const GameCardItem = (item) => (
     <View style={tailwind('mb-6')}>
       <GameCard
         name={item.name}
@@ -38,13 +39,27 @@ const SearchResults = () => {
     </View>
   )
 
-  const CategoryCardItem = ({ item }) => (
+  const CategoryCardItem = (item) => (
     <View style={tailwind('mb-6')}>
       <CategoryCard
         name={item.name}
         image={item.image_background}
         games={item.games}
         gamesCount={item.games_count}
+      />
+    </View>
+  )
+
+  const ReviewCardItem = (item) => (
+    <View style={tailwind('mb-6')}>
+      <ReviewCard
+        image={item.game.background_image}
+        title={item.game.name}
+        content={item.text}
+        date={item.edited ? item.edited : item.created}
+        author={item.user.username}
+        likes={item.likes_rating}
+        rating={item.game.ratings[0].title}
       />
     </View>
   )
@@ -89,11 +104,19 @@ const SearchResults = () => {
             <FlatList
               data={searchResult.results}
               keyExtractor={(item) => item.slug}
-              renderItem={
-                route.params && route.params.card === 'game'
-                  ? GameCardItem
-                  : CategoryCardItem
-              }
+              renderItem={({ item }) => {
+                if (route.params.card === 'game') {
+                  return GameCardItem(item)
+                } else if (route.params.card === 'category') {
+                  return CategoryCardItem(item)
+                } else if (route.params.card === 'review') {
+                  return ReviewCardItem(item)
+                } else {
+                  return console.error(
+                    'Error: no card parameter provided in Search route'
+                  )
+                }
+              }}
               style={tailwind('mt-4')}
               onEndReached={() => fetchNextData(searchResult, setSearchResult)}
             />
