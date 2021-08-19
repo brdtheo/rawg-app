@@ -59,7 +59,7 @@ const SearchResults = () => {
         date={item.edited ? item.edited : item.created}
         author={item.user.username}
         likes={item.likes_rating}
-        rating={item.game.ratings[0].title}
+        rating={item.rating}
       />
     </View>
   )
