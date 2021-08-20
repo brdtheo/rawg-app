@@ -10,6 +10,7 @@ import {
 import GameCard from '../GameCard'
 import CategoryCard from '../CategoryCard'
 import ReviewCard from '../ReviewCard'
+import CollectionCard from '../CollectionCard'
 import { useRoute } from '@react-navigation/native'
 import { formatNumber, fetchNextData } from '../../utilities/Utils'
 import { Ionicons } from '@expo/vector-icons'
@@ -60,6 +61,19 @@ const SearchResults = () => {
         author={item.user.username}
         likes={item.likes_rating}
         rating={item.rating}
+      />
+    </View>
+  )
+
+  const CollectionCardItem = (item) => (
+    <View style={tailwind('mb-6')}>
+      <CollectionCard
+        name={item.name}
+        image={item.game_background.url}
+        author={item.creator.username}
+        gamesCount={item.games_count}
+        covers={item.backgrounds}
+        likesCount={item.likes_count}
       />
     </View>
   )
@@ -127,6 +141,26 @@ const SearchResults = () => {
           </View>
         </View>
       )
+    } else if (cardType === 'collection') {
+      return (
+        <View style={tailwind('w-full mt-4')}>
+          <View style={tailwind('mb-6')}>
+            <CollectionCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <CollectionCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <CollectionCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <CollectionCard placeholder />
+          </View>
+          <View style={tailwind('mb-6')}>
+            <CollectionCard placeholder />
+          </View>
+        </View>
+      )
     }
   }
 
@@ -177,6 +211,8 @@ const SearchResults = () => {
                   return CategoryCardItem(item)
                 } else if (route.params.card === 'review') {
                   return ReviewCardItem(item)
+                } else if (route.params.card === 'collection') {
+                  return CollectionCardItem(item)
                 } else {
                   return console.error(
                     'Error: no card parameter provided in Search route'
