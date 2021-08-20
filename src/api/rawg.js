@@ -1,5 +1,5 @@
 import axios from 'axios'
-import RAWG_KEY from '../../key'
+const RAWG_KEY = process.env.RAWG_KEY
 
 const fetchData = async (path, keyChar) => {
   if (path && keyChar) {
