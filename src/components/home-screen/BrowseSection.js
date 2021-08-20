@@ -24,6 +24,7 @@ const BrowseSection = () => {
       icon: 'collection',
       title: 'Collections',
       query: 'collections',
+      card: 'collection',
     },
     {
       icon: 'review',
