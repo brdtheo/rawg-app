@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#151515"
-      }
+      },
+      "package": "com.brdtheo.RAWG"
     },
     "web": {
       "favicon": "./assets/favicon.png"
