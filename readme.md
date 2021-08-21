@@ -1,5 +1,6 @@
 
 # RAWG app
+Video game database in a simple react native app using the [API](https://rawg.io/apidocs)
 
 ## Features
 - [x] Plain text search
